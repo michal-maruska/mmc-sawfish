@@ -1,5 +1,10 @@
-mmc-sawfish (1-1) unstable; urgency=low
+mmc-sawfish (1.1) maverick; urgency=low
 
+  * maverick (& git)
+
+ -- Michal Maruska <mmaruska@gmail.com>  Mon, 22 Feb 2011 23:07:45 +0100
+
+mmc-sawfish (1-1) unstable; urgency=low
   * Initial release
 
  -- Michal Maruska <michal@ruska.it>  Tue, 01 Apr 2008 12:38:45 +0200
