@@ -1,0 +1,30 @@
+-*-outline-*-
+
+* keymaps
+  ../sawfish/wm/user.jl   calls:
+
+(unless avoid-mmc-defaults
+   (load "mmc/keymaps/default-keymap"))
+
+
+put in any of the "site-init"
+
+(setq avoid-mmc-defaults #t)
+
+
+
+* init files    '("~/.sawfishrc" "~/.sawfish/rc" "~/.sawmillrc")
+
+
+C code loads
+
+"sawfish.wm.misc", "sawfish.wm.cursors", "sawfish.wm"
+
+then    manage_windows
+
+
+
+** sawfish.wm
+= sawfish.wm.jl  -> (load "sawfish/wm/user")
+
+But, 

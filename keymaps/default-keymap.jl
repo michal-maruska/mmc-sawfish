@@ -1,0 +1,174 @@
+;;; Intro:
+
+;; I have several keymaps: accessible from the `global-keymap' w/ exactly 1 event.
+;; This file defines in sequence each one, and delegates the definition of bindings to separate files,
+;; which require the necessary/relevant modules itself.
+
+;; If there are definitions of commands (and, even worse, functions) then it's a sign of my testing new features...
+
+
+;; `RULE_1'
+
+;; I use the hyper modifier to distinguish application bindings from the WM's ones.
+;; That means, that any combination which includes the Hyper modifier invokes the WM.
+;; the key sequence leading to a command can include events w/o the hyper modifier,
+;; just the initial one has to.
+;; i have the hyper  keys (hyper_l/r) on both sides.
+
+
+;; `RULE_2'
+;; i dedicate my right hand keys to `movement', or direction.
+;;   u i o
+;;   j k l      k is down
+;;   n   .
+
+
+;; `RULE_3'
+;;  repeatable actions need to be in 1-event... global keymap directly. So i use many modifier combinations!
+
+;; i think, that window-keymap & global-keymap should have disjoint prefixes. .....unless....
+
+(require 'rep.trace)
+(define debug #t)
+(define (my-require symbol)
+  "`require', but recover from possible error."
+  (condition-case data
+      (progn
+        (DB "require: %s\n" symbol)
+        (require symbol))
+    (error .
+           (progn
+             (DB "require \"%s\" failed: %s\n" symbol data)
+             ;(display-message (format #f "require \"%s\" failed, continuing however..." symbol))
+             ))))
+
+(set-wm-modifier (cdr (lookup-event "Hyper-a")))
+
+;; (setq backtrace-on-error t)
+
+
+;; these might be hacks:  this file is about keymaps, not to make sure useful `commands' are provided!
+(require 'rep.mmsystem)
+(require 'mmc.simple)
+(require 'mmc.my-apps)
+(require 'mmc.window)
+
+;; fixme: emacs.jl defines commands w/  #:specs which need this:  How to make it automatic?
+(require 'sawfish.wm.util.prompt)
+
+
+;; this is directory, where these keyboards are stored. Should be editable by "trusted" users
+;; (push! load-path "/usr/share/sawfish/site-lisp/")
+
+(defmacro define-keymap (symbol documentation entry file)
+  (declare (unused documentation))
+  `(progn
+     (define ,symbol (make-keymap))
+     ;(defvar symbol (make-keymap) ,documentation)
+     ;; fixme: documentation 
+     (bind-keys global-keymap ,entry ,symbol)
+     (load ,file)))
+
+(require 'sawfish.wm.commands.move-resize)
+
+;; directly in the `global-keymap'
+(load "/etc/X11/sawfish/keymaps/global-short")
+(load "/etc/X11/sawfish/keymaps/multimedia-keys")
+(load "/etc/X11/sawfish/keymaps/directions")
+
+;; this was meant to be my Emacs' C-x equivalent;  it's for window pushing to corners
+(define-keymap hc-keymap "miscelaneoush commands & pushing window"
+  "H-c" "/etc/X11/sawfish/keymaps/hc")
+
+
+;; `f'  as Frame (or `finestra' window in italian)
+;; fixme: why is this not connected to the `window-keymap'
+(define-keymap my-window-keymap "work with this exact window, not change its state, though"
+  "H-f" "/etc/X11/sawfish/keymaps/hf")
+
+;;; window `Status:' shaded, icon ....   but also Group!     derived from C-z in shell: changing state
+(define-keymap my-change-window-status-keymap "changing status: shaded, ..."
+  "H-z" "/etc/X11/sawfish/keymaps/window-state")
+
+
+(define-keymap groups-keymap "working with groups"
+  "H-n"  "/etc/X11/sawfish/keymaps/groups")
+
+
+;;; everything to invoke browsers:  `h' as hypertext
+(define-keymap my-browser-map "invoking browsers"
+  "H-h" "/etc/X11/sawfish/keymaps/browse")
+
+
+;;; invoking applications
+(define-keymap my-application-map "application launcher"
+  "H-y" "/etc/X11/sawfish/keymaps/applications")
+
+
+;;;  `resizing:'   fixed sizes
+(define-keymap my-resize-map "resizing, but not repeatable"
+  "H-b" "/etc/X11/sawfish/keymaps/hb")
+
+
+;;; Xterm: 
+(define-keymap my-xterm-keymap "invoking xterms for various tasks"
+  "H-r" "/etc/X11/sawfish/keymaps/hr")
+
+      
+;; H-e activates a new default editor window. (emacs frame), so to get a non-default one,
+;; press Control as well
+(define-keymap my-emacs-keymap "opening emacs frames"
+  "H-C-e" "/etc/X11/sawfish/keymaps/emacs")
+
+
+
+;; enriching standard keymaps:
+(load "/etc/X11/sawfish/keymaps/cycle")
+
+
+
+;;; `iswitch' && ...
+(require 'mmc.iswitch-window)
+
+(bind-keys global-keymap
+  "H-s" 'iswitch-window
+  "H-C-s" 'iswitch-window-continue
+  "H-C-f" 'iswitch-start-host
+                                        ;"H-C-s" 'iswitch-window
+  "H--" 'popup-window-menu
+  "H- " 'select-workspace-interactively)
+
+
+;;; `wid'
+(require 'mmc.wid)
+
+;; it is in the `my-window-keymap' too.
+(define-keymap wid-keymap "assigning & using wids to windows"
+  "H-C-a" "/etc/X11/sawfish/keymaps/wid")
+
+;; shorter:
+(bind-keys global-keymap
+  "H-;" 'wid-goto-window                ;
+  "H-," 'wid-goto-window                ;
+  "H-a" 'wid-goto-window                ;
+  "H-m-a" 'wid-assign-wid-to-window
+  ;;  'wid-goto-workspace
+  )
+
+
+
+(define-keymap my-workspace-map "working with workspaceS"
+  "H-w" "/etc/X11/sawfish/keymaps/workspace")
+
+
+
+;; this is hacky:
+(define-keymap my-recover-keymap "recovering problems w/ viewports"
+  "H-v" "/etc/X11/sawfish/keymaps/viewport")
+
+;; i have to load it even for the global keymap, so.... to avoid problems
+(load "/etc/X11/sawfish/keymaps/viewport")
+
+
+(load "/etc/X11/sawfish/keymaps/mouse")
+(provide 'default-keymap)

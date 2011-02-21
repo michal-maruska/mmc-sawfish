@@ -1,0 +1,11 @@
+Source: mmc-sawfish
+Section: unknown
+Priority: extra
+Maintainer: Michal Maruska <michal@ruska.it>
+Build-Depends: cdbs, debhelper (>= 5), sawfish | sawfish-mmc
+Standards-Version: 3.7.2
+
+Package: mmc-sawfish
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, sawfish | sawfish-mmc
+Description: collection of Lisp add-ons.
