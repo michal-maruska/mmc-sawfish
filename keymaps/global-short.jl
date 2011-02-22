@@ -35,7 +35,7 @@
   "H-7" 'move-4
                                         ; "H-b" 'center-mouse
                                         ; "H-o" 'spager-toggle
-  "H-q" 'quote-event 
+  "H-q" 'quote-event
 
 
   "H-e" 'emacs-open
@@ -44,7 +44,7 @@
     (let ((comment (prompt-for-string "tell me:")))
       (format (stderr-file) "------------------%s-----------\n" comment)))
 
-  
+
   "H-t" 'my-xterm
   "H-C-t" 'rsh-to
   "H-C-r" 'su-to
@@ -53,7 +53,7 @@
   "H-C-d"  'move-to-workspace
 
                                         ;"XF86AudioMute" 'toggle-mute
-  "XF86Mail" 'dump-stacking-list 
+  "XF86Mail" 'dump-stacking-list
   "XF86AudioLowerVolume" 'mixer-uniconify
 
 
@@ -69,8 +69,8 @@
   "Mod3-H-i"  'my-prev-window
   "H-Tab"    'exchange-windows
   "H-C-9"    'exchange-windows          ; 'my-next-window;
- 
-                                        ; "H-C-n" 
+
+                                        ; "H-C-n"
   "H-C-;" 'exchange-windows
                                         ;"H-C--" 'exchange-windows
                                         ;"H-C--" 'cycle-search
@@ -84,10 +84,16 @@
 
 
 ; some users use arrows !
-(bind-keys global-keymap 
+(bind-keys global-keymap
   "s-h-Up" 'slide-window-up
   "s-h-Down" 'slide-window-down
   "s-h-Left" 'slide-window-left
   "s-h-Right" 'slide-window-right
   )
 
+
+(bind-keys global-keymap
+  "H-F11"
+  '(let* ((stream (make-string-output-stream))
+	  (proc (make-process stream)))
+     (call-process proc nil "gnome-screensaver-command" "-l")))
