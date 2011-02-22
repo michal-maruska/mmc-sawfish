@@ -1,3 +1,9 @@
+mmc-sawfish (1.2) maverick; urgency=low
+
+  * fix  debian/control
+
+ -- Michal Maruska <mmaruska@gmail.com>  Mon, 22 Feb 2011 23:09:45 +0100
+
 mmc-sawfish (1.1) maverick; urgency=low
 
   * maverick (& git)

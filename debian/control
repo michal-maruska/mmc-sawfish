@@ -1,11 +1,11 @@
 Source: mmc-sawfish
-Section: unknown
+Section: x11
 Priority: extra
-Maintainer: Michal Maruska <michal@ruska.it>
-Build-Depends: cdbs, debhelper (>= 5), sawfish | sawfish-mmc
+Maintainer: Michal Maruska <mmaruska@gmail.com>
+Build-Depends: cdbs, debhelper (>= 5), sawfish
 Standards-Version: 3.7.2
 
 Package: mmc-sawfish
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, sawfish | sawfish-mmc
-Description: collection of Lisp add-ons.
+Depends: ${shlibs:Depends}, ${misc:Depends}, sawfish
+Description: collection of Lisp add-ons for the window manager.
