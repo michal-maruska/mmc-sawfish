@@ -600,7 +600,14 @@
 				,mozilla-window?)
                               ))
                                         ;"galeon_browser"
-		      
+
+			    ((equal key "M-p")
+			     ;; fixme: see browser.jl
+                             (iswitch-add-condition!
+                              wlist
+			      `(predicate
+				,git-browser-window?)
+                              ))
 
                             ((equal key "C-v") ; limit to the current viewport
                              ;; fixme!

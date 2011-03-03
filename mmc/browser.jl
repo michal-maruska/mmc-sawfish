@@ -5,6 +5,7 @@
     (export
       mozilla-window?
       netscape-running?
+      git-browser-window?
       )
 
     (open
@@ -32,9 +33,17 @@
           (string= class  "MozillaFirebird-bin")
           (string= class  "netscape")
           (string= class  "Firefox-bin")
+	  (string= class  "Firefox")
 	  (string= class  "Chromium-browser")
+	  (string= class  "Google-chrome")
 	  )))
-    
+
+  (define (git-browser-window? w)
+    (let ((class  (window-class w)))
+      (or (string= class  "P4v.bin")
+          (string= class  "gitk")
+	  )))
+
 ;; to add the current one:
 ;;(window-class (get-window-by-name-re "Mozilla "))
   
@@ -139,6 +148,3 @@
     (netscape-remote "http://www.google.com"))
   (define-command 'mgoogle mgoogle)
 )
-
-
-
