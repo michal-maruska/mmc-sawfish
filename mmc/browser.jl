@@ -36,6 +36,9 @@
 	  (string= class  "Firefox")
 	  (string= class  "Chromium-browser")
 	  (string= class  "Google-chrome")
+
+	  (string= class  "Minefield")
+	  (string= class  "Nightly")
 	  )))
 
   (define (git-browser-window? w)
