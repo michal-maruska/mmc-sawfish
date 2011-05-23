@@ -47,7 +47,7 @@
      sawfish.wm.custom
      )
 
-  (define debug #t)
+  (define debug #f)
   (defgroup xterm "xterm related")
 ;;; standard xterm: Fonts
   (define (language->font language)
