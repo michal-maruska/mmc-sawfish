@@ -3,7 +3,7 @@
     (export
       print-debug
       ;DB
-      
+
       message-format
       my-read-event
 
@@ -29,7 +29,7 @@
       compose-path
       user-uid
 
-     
+
       set-nth!
       my-clean
       ; home-dir
@@ -46,7 +46,7 @@
      rep.data.tables
      rep.io.files                       ;stderr-file
      rep.io.file-handlers
-      	  
+
      sawfish.wm.util.keymap             ; read-event
      sawfish.wm.util.decode-events
      rep.regexp
@@ -62,26 +62,11 @@
      sawfish.wm.util.window-order
      sawfish.wm.session.init)
 
-  (define debug #t)
-
-  '(define (print-debug fmt #!rest arguments)
-    ;(message (apply format #f fmt arguments))
-    (apply format (stderr-file) fmt arguments))
-
-
-;; i provide this in rep.trace !
-  '(defmacro DB (fmt #!rest arguments)
-    ;; fixme:
-    ; `(if ,debug (print-debug ,fmt ,@arguments))
-    (if debug
-        `(print-debug ,fmt ,@arguments)
-      '()))
-    
-;;
+  (define debug #f)
 
   (define (compose-path a b)
     (concat a "/" b))
-  
+
   (define (message-format format-string  #!rest rest)
     (message (apply format #f format-string rest)))
 
@@ -95,7 +80,7 @@
   (define (other-window)
     ;; the previous focused ?
     (nth 1 (window-order current-workspace)))
-  
+
   (when #f
     (define alist '(1 2 3))
     (nth-create 10 alist #f #f))
@@ -120,7 +105,7 @@
       (display-message #f)
       e))
 
-  
+
   (defmacro pop! (symbol)
     `(setq ,symbol (cdr ,symbol)))
 
@@ -130,14 +115,14 @@
 
   (define (set-xauthority file)
     (setenv "XAUTHORITY" (canonical-file-name file)))
-  
+
   (define (my-clean)
     "Un-display, "
     (display-message)
                                         ;(menu-stop-process)
     )
   (define-command 'my-clean my-clean)
-  
+
   (define-command 'customize-new (lambda ()
                                    (system-bg "sawfish-configure.scm")))
 
@@ -180,16 +165,16 @@
      ((string= (user-login-name) "mmc") 501)
      ((string= (user-login-name) "beta") 502)
      (t 0)))
-            
+
 ;; fixme: only public version:
   (define (system-bg command)
-    (message (format #f "system: %s" command))
+    (DB "system: %s" command)
     (system (concat "nohup " command " &")))
 
 
   (define (set-nth! list n value)
     (rplaca (nthcdr n list) value))
-  
+
 
   (define (delete-nth-from-list! list n)
     (when (> n 0)
@@ -250,7 +235,7 @@
                 (end-of-stream #t)
                 (error .
                        (message "read-and-run: error occured")
-                       (message                   
+                       (message
                         (format #f "error: %s\n" my-error))
                        't))
             (close-file stream)))
