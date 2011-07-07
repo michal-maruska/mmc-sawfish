@@ -21,12 +21,12 @@
      sawfish.wm.events
      sawfish.wm.windows.subrs
      sawfish.wm.stacking
-     
+
      sawfish.wm.commands.x-cycle
      ;;sawfish.wm.util.display-wininfo
 
      sawfish.wm.util.prompt
-     
+
      sawfish.wm.workspace
      sawfish.wm.viewport
      mmc.display
@@ -37,7 +37,7 @@
                                         ;window-order ;focus-mode
      sawfish.wm.util.window-order
      )
-                                        
+
 
   (define (window-focused-p window)     ; fixme: is this correct ?
     (eq (input-focus) window))
@@ -108,14 +108,14 @@
       current-search))
 
 ;;   command -------------- >  cycle-command   |  x-cycle  |
-;;     cycle-search-start      cycle-search  ---- 
+;;     cycle-search-start      cycle-search  ----
 ;;
   (define (cycle-search-start)
 
     (setq
      current-search
      (filter window-live? current-search))
-    
+
     (unwind-protect
         (progn
           (toggle-cycle-global 0)
