@@ -73,7 +73,8 @@
 ;; nice
 (defcustom my-xterm-command             ;"xterm +wf +sb -sl 500 -j -ls +dc -u8 +vb"
   (concat "rxvt +sb -sl 500 -j -ls +vb "
-          (format #f  "-geometry %dx%d" (inexact->exact (round (/ (screen-width) 18)))
+          (format #f  "-geometry %dx%d"
+		  (inexact->exact (round (/ (screen-width) 18 1.4)))
                   (inexact->exact (round (/ (screen-height) 23 1.5)))))
 
   "the default command & args"
