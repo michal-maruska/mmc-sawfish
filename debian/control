@@ -1,5 +1,5 @@
 Source: mmc-sawfish
-Section: unknown
+Section: x11
 Priority: extra
 Maintainer: Michal Maruska <michal@ruska.it>
 Build-Depends: cdbs, debhelper (>= 5), sawfish | sawfish-mmc
