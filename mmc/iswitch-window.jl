@@ -23,7 +23,7 @@
 ;; - [18 dic 04]   ADT to contain the restrictions,  it's a (a)list
 ;;     then i can make some specific calls (with partial restriction)..
 ;;     iswitch-window-on-viewport  for example  .. [18 dic 04] in fact i can.
-;;  
+;;
 ;;  call-for-next-key-events*
 
 
@@ -48,7 +48,7 @@
 ;; C-z,A-z        iconify window
 ;; C-h,A-h        shade window
 ;; RET            select window
-;; 
+;;
 ;; Other keys insert themselves. A-s (or H-s, depending on your
 ;; modifiers) would be a good key to bind iswitch-window to; for example,
 ;;
@@ -96,7 +96,7 @@
      rep.data.records
 
      rep.trace
-                                        
+
      rep.io.timers
      sawfish.wm.windows
      sawfish.wm.misc                    ;grab!
@@ -137,7 +137,7 @@
     (make-criterion) criterion?
     (type type-of set-type!)
     (model model-of model-y!))
-  
+
 ;; so i could use a 2-list  ( (type model) .....) !
   (defvar current-criterion '()
     "keep the structured contstraints of the last iswitch.")
@@ -156,7 +156,7 @@
 
 
 
-;;; Display 
+;;; Display
 
 ;; Use the following to customize the look of the menu.
 
@@ -244,11 +244,11 @@
          (let ((class-name (get-x-text-property w 'WM_CLASS)))
            (if class-name
                (pad-to                  ;fixme:  make it a minimum but w/o maximum !!!
-                (concat "  <" 
+                (concat "  <"
                         (aref class-name 1)
                         ">")
                 12))))
-     
+
      (window-name w)))
 
 
@@ -341,7 +341,7 @@
            (if (consp workspace) ;; (- . 1)
                (lambda (w)
                  (not (window-in-workspace-p w (cdr workspace))))
-               
+
              (lambda (w)
                (window-in-workspace-p w workspace)))))
     (filter (lambda (w)
@@ -351,7 +351,7 @@
             wlist)))
 
 
-  
+
   (define (iswitch-update-class wlist types)
     "the class of window must be one of TYPES (a list of strings)"
     (filter (lambda (w)
@@ -396,7 +396,7 @@
   (define (condition-type condition)
     (car condition))
 
-   ;; 
+   ;;
   (define (dispatch-condition wlist condition)
     "interpret the (car CONDITION), and dispatch/apply the right function w/ the the (cdr codition)  on WLIST. Return the result."
     ;; condition is a list
@@ -412,9 +412,9 @@
 
         ((user)
          4)
-        ((application)                  ; 
+        ((application)                  ;
          5)
-      
+
         ((workspace)
          (iswitch-update-workspace wlist (cadr condition))) ;fixme!
 
@@ -469,7 +469,7 @@
                      (replay-criterions current-criterion))
                     (focused-window (car init-wlist))
                     (use-timer #f)
-                    
+
                     wlist               ; matching windows ?
                     (display-function
                      (lambda ()
@@ -512,12 +512,12 @@
 
                             ((or (equal key "C-u")
                                  (equal key "A-u"))
-                             ;; Reset 
+                             ;; Reset
                              (setq input ""
                                    ;;  ???
                                    wlist (replay-criterions current-criterion)))
                             ;;(iswitch-update-match (cons input constraints) init-wlist)))
-                    
+
                             ((or (equal key "BS")
                                  (equal key "C-h"))
                              (if (> (length input) 0)
@@ -529,7 +529,7 @@
                                  (setq current-criterion (safe-cdr current-criterion))
                                  (setq wlist (replay-criterions current-criterion)) ;init-wlist is recomputed! that's good.
                                  )))
-                          
+
                             ;; should be a common ...
                                         ; (setq wlist (iswitch-update-match (cons input constraints) init-wlist)))
                             ((equal key "M-e")
@@ -538,7 +538,7 @@
 
 			    ((equal key "M-s")
                              (iswitch-add-condition! wlist '(class "Skype")))
-                         
+
 
 
                             ;; do i want alist ??
@@ -551,14 +551,14 @@
                             ((equal key "M-f")
                                         ;(setq wlist (iswitch-update-class wlist '("Emacs")))
                              (setq wlist
-                                   (iswitch-add-condition 
+                                   (iswitch-add-condition
                                     (iswitch-add-condition wlist '(class "Emacs" "xemacs"))
                                     '(name "xemacs"))))
 
 
-                            ((equal key "M-t") 
+                            ((equal key "M-t")
                              (iswitch-add-condition! wlist '(class "XTerm")))
-                         
+
                             ;((equal key "M-g")
                             ; (setq wlist (iswitch-update-class wlist '("galeon_browser"))))
 
@@ -569,7 +569,7 @@
 
                             ((equal key "C-k")
                              (iswitch-add-condition! wlist `(predicate ,window-iconified-p)))
-                          
+
                             ((equal key "M-c")
                              (setq wlist (iswitch-update-class wlist '("X-Chat"))))
 
@@ -586,7 +586,7 @@
                              )
 
                             ((equal key "M-l")
-                             ;; 
+                             ;;
                              (iswitch-add-condition! wlist '(class "XTerm"))
                              (iswitch-add-condition! wlist '(name "Elinks")))
 
@@ -600,7 +600,7 @@
 				,mozilla-window?)
                               ))
                                         ;"galeon_browser"
-		      
+
 
                             ((equal key "C-v") ; limit to the current viewport
                              ;; fixme!
@@ -619,7 +619,7 @@
                             ((equal key "C-s")
                              (setq current-search wlist))
                             ;; Rotations:
-                            ((or 
+                            ((or
                               (equal key "A-s")
                               (equal key "C-i")
                               (equal key "C-p")
@@ -658,15 +658,15 @@
 
 
                          ;;; These don't `modify' the wlist:
-                    
-                            ;; Some handy ops, once we are there why not to ... toggle some 
+
+                            ;; Some handy ops, once we are there why not to ... toggle some
                             ((or (equal key "C-z")
                                  (equal key "A-z"))
                              (let ((w (car wlist)))
                                (if (window-get w 'iconified)
                                    (uniconify-window w)
                                  (iconify-window w))))
-                      
+
                             ((or        ;(equal key "C-h")
                                         ;(equal key "A-h")
                               (equal key "M-s"))
@@ -675,7 +675,7 @@
 
                             ;; "C-f" "C-b" ??
 
-                         
+
                             ;; append ... `chars' only !
                             ((or        ;(equal key "SPC")
                               (= 1 (length event-string))) ; sawfish.wm.events
@@ -686,7 +686,7 @@
                         (beep)
                                         ;(throw 'exit-iswitch wlist)
                         (display-window (car wlist))))))))
-           
+
            ;; unwind-protect:
            (display-message nil)
            (x-message-hide iswitch-display-window)

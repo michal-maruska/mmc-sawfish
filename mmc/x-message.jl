@@ -74,7 +74,7 @@
 
 (define debug #tf)
 
-  ;; fixme:  don't leak all those GCs   
+  ;; fixme:  don't leak all those GCs
   (define-record-type :message-window
     (make-message-window)
     message-window?
@@ -122,7 +122,7 @@
 (defvar default-message-spacing 1)
 (defvar default-message-position
   (cons (quotient (car (head-dimensions 0)) 2)  (quotient (cdr (head-dimensions 0)) 2)))
-    
+
 
 
 
@@ -143,14 +143,14 @@
   "walk the TEXT LINES and produce the glyphs."
   (let ((message-attrs (attributes-of mwindow))
         (message-msg (message-of mwindow))
-        ;; mmc: 
+        ;; mmc:
         (drawable (or drawable
                             (x-window-back-buffer (window-of mwindow))))
         (message-dims (dimension-of mwindow))
         (message-gc (gc-of mwindow)))
 
     ;;(when drawable
-      
+
     (let ((pad (agetd 'padding message-attrs default-message-padding))
           (fg (colorify (cdr (assqd 'foreground message-attrs default-message-foreground))))
           (font (fontify (cdr (assq 'font message-attrs))))
@@ -202,18 +202,18 @@
     (x-window-swap-buffers (window-of mwindow))))
 
 
-;; 
+;;
 (define (x-message-calculate-dimensions mwindow)
   "walks the TEXT lines, and calculates the width."
   (let ((message-attrs (attributes-of mwindow))
         (message-msg (message-of mwindow))
         message-dims)
-      
+
     (let ((pad (agetd 'padding message-attrs default-message-padding))
           (font (fontify (cdr (assq 'font message-attrs))))
           (spacing (agetd 'spacing message-attrs default-message-spacing)))
       (setq message-dims (cons (* 2 (car pad)) (* 2 (cdr pad))))
-      
+
       (mapcar (lambda (msg)
                 (when (stringp msg)
                   (rplaca message-dims
@@ -335,7 +335,7 @@
 
 ;; mmc: i don't like this (sawfish-as-WM) terminology:
 ;; we don't merely hide: we destroy!
-;; 
+;;
 (define (x-message-hide mwindow)
   "destroy the X window associated w/ MWINDOW"
   (let ((message-window (window-of mwindow))
@@ -353,10 +353,10 @@
 (define (make-message-window-verbose )
   (DB "x-message: creating a new mwindow!\n")
   (make-message-window))
-  
+
 (define (x-message-display message attrs #!key (mwindow (make-message-window-verbose)))
   "message is a list of strings/lines. attrs is global"
-    
+
                                         ;(let ((mwindow (make-message-window)))
   (unless (memq mwindow message-windows)
     (push! message-windows mwindow))
