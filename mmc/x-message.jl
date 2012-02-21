@@ -120,8 +120,9 @@
 (defvar default-message-border-color "black")
 (defvar default-message-border-width 1)
 (defvar default-message-spacing 1)
-(defvar default-message-position
-  (cons (quotient (car (head-dimensions 0)) 2)  (quotient (cdr (head-dimensions 0)) 2)))
+(define (default-message-position)
+  (cons (quotient (car (head-dimensions 0)) 2)
+	(quotient (cdr (head-dimensions 0)) 2)))
 
 
 
@@ -236,7 +237,7 @@
   (let ((message-attrs (attributes-of mwindow))
         (message-dims (dimension-of mwindow))
         message-pos)
-    (let ((pos (agetd 'position message-attrs default-message-position))
+    (let ((pos (agetd 'position message-attrs (default-message-position)))
           (bw (agetd 'border-width message-attrs default-message-border-width))
           (gravity (agetd 'gravity message-attrs 'center))
           (w (car message-dims))
