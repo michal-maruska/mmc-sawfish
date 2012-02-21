@@ -1,5 +1,4 @@
 
-
 ;; space:
 
 ;;  host
@@ -15,13 +14,15 @@
 
 (define-structure mmc.emacs
     (export
+      emacs-binary
+
       gemacs                            ; do we need it ?
       gemacs-nodesktop                  ; idem
       gemacs-gnus
       gemacs-erc
-      ;; 
+      ;;
       emacs-open
-      ;; 
+      ;;
       emacs-attach
                                         ; emacs-net
       emacs-remote
@@ -32,7 +33,7 @@
       emacs-beta
       emacs-mmc
       emacs-session-open
-     
+
       ;; variables do it directly !
       )
     (open
@@ -114,7 +115,7 @@
 
 
 
-;;;  A hi-level 
+;;;  A hi-level
 
 
 ;; why global?
@@ -151,7 +152,7 @@
                   #:hostname host
                   #:session 0)))
 
-  
+
 
   (define (emacs-beta)
     "ask for the HOST and open remote emacs (of USER) on this DISPLAY"
@@ -209,7 +210,7 @@
                   prompt-user-history emacs-user))
            (host (my-prompt-from-list
                   emacs-host-list
-                  "host: " "" 't 
+                  "host: " "" 't
                   prompt-host-history (table-ref emacs-user>host user))) ; was emacs-host
            ;; on which display:
            (destination (concat (getenv "HOSTNAME") (getenv "DISPLAY"))))

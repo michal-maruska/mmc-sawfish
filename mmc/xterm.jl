@@ -4,7 +4,7 @@
 ;; todo:  in a dir
 
 ;; customize-   fonts!
-;; 
+;;
 
 ;;; Description:
 ;; This is a module for defining commands
@@ -32,7 +32,7 @@
      rep.system
      rep.regexp
      rep.mmsystem
-      
+
      rep.io.files
      sawfish.wm.windows                 ;window-class
      sawfish.wm.util.prompt
@@ -53,11 +53,11 @@
   (define (language->font language)
     "given a language code, return the font to use for the xterm. #f -> don't specify"
     (cond
-     ((string= language "en") #f 
+     ((string= language "en") #f
       ;; use the default!  mine is  "-*-lucidatypewriter-medium-r-normal-*-20-*-*-*-*-*-*"   in ~/.Xdefaults
       )
      ((string= language "cz")
-      #f                                ; fixme: 
+      #f                                ; fixme:
       ;"-*-lucidatypewriter-medium-r-*-20-*-*-*-*-*-*-2"
       )
      ((string= language "rus") "-*-*-*-r-normal--24-*-*-*-*-*-*-5")
@@ -73,7 +73,8 @@
 ;; nice
 (defcustom my-xterm-command             ;"xterm +wf +sb -sl 500 -j -ls +dc -u8 +vb"
   (concat "rxvt +sb -sl 500 -j -ls +vb "
-          (format #f  "-geometry %dx%d" (inexact->exact (round (/ (screen-width) 18)))
+          (format #f  "-geometry %dx%d"
+		  (inexact->exact (round (/ (screen-width) 18 1.4)))
                   (inexact->exact (round (/ (screen-height) 23 1.5)))))
 
   "the default command & args"
@@ -107,7 +108,7 @@
                     (command my-xterm-command)
                     hostname            ; "localhost")
                     user
-                    title 
+                    title
                     (geometry)
                     ;;                     (format nil "%2dx%d+100+100"
                     ;;                             100 ;(round (/ (* (screen-width) 0.7) 5))
@@ -138,7 +139,7 @@
           ;; fixme: this should be solved by rxvt: use the all args string, instead of basename of $0 !
           (unless title
             (setq title program)))
-          
+
       ;; local !!
       (when (and user (not (string= user (user-login-name))))
 	(DB "%s vs. %s.\n" user (user-login-name))
@@ -177,7 +178,7 @@
 	    (if (and priority
 		     (> priority our-priority))
 		(setq nice (- priority our-priority)))
-	    
+
 
 	    ;;(message-format "system: %s\n" command-line)
 	    (system-bg (concat (if (zerop nice)
@@ -186,7 +187,7 @@
 			       command-line)))
 	;;
 	(system-bg command-line)
-	))) ; I renice SF to -10, so this 
+	))) ; I renice SF to -10, so this
 
 
 ;;;
@@ -233,7 +234,7 @@ Every one is run only on the first matching window!")
 
 
 
-;;; THE stock xterm  and other 
+;;; THE stock xterm  and other
   (define-command 'my-xterm
     (lambda ()
       (my-xterm #:font (language->font "en")
@@ -261,7 +262,7 @@ Every one is run only on the first matching window!")
      #:hostname access-log-host
      #:user "root"
      #:wid "S"
-     ;; 
+     ;;
                                         ;#:login "rsh"
      ;; args
      )))
@@ -295,7 +296,7 @@ Every one is run only on the first matching window!")
   '(define-xterm-command 'ebay
                                         ;#:hostname "linux10"
     #:wid "i"
-                                        ;    #:program 
+                                        ;    #:program
     )
 
   (define-xterm-command 'postgres
@@ -347,11 +348,11 @@ Every one is run only on the first matching window!")
   (define-xterm-command 'xtermrus
     #:font (language->font "rus"))
 
-  (define-xterm-command 'xtermrus5 
+  (define-xterm-command 'xtermrus5
     #:font (language->font "rus5"))
 
 
-  (define-xterm-command 'xtermcz 
+  (define-xterm-command 'xtermcz
     #:font (language->font "cz"))
 
 
@@ -368,7 +369,7 @@ Every one is run only on the first matching window!")
   (define-xterm-command 'rxvt
     #:command "rxvt -sb +ls")           ;  -bg white  -tn xterm
 
-  (define-xterm-command 'lynx 
+  (define-xterm-command 'lynx
     #:program "lynx -prettysrc")
 
 
@@ -383,7 +384,7 @@ Every one is run only on the first matching window!")
     :group (xterm)
     ;; integer
     :type number)
- 
+
   (defcustom links-program
     "elinks -session-ring 1" ;  -no-connect
     "Command to invoke links ... not used by `elinks-maybe-selection' "
@@ -419,14 +420,14 @@ Every one is run only on the first matching window!")
     (apply my-xterm
            #:command  "rxvt -geometry 100x60 -sb +ls"           ; -tn xterm
            ;; [03 nov 05] mmc: what was it?
-           ;; #:command "/usr/X11R6/bin/xterm +wf +sb -sl 500 -j -ls +dc -u8" 
+           ;; #:command "/usr/X11R6/bin/xterm +wf +sb -sl 500 -j -ls +dc -u8"
            #:program (format #f "%s -no-connect '%s'" links-program url) ;-base-session=1  -no-connect
            #:font (language->font language)
            rest))
 
 (define-command 'elinks-maybe-selection
   ;; Fixme: When i forgot (lambda()    I was getting freezes:
-  ;; SF was requesting selection, but nobody was answering: What does that mean? 
+  ;; SF was requesting selection, but nobody was answering: What does that mean?
   (lambda ()
     (let ((selection-atom 'PRIMARY))
       (if (not (x-selection-active-p selection-atom))
@@ -458,7 +459,7 @@ Every one is run only on the first matching window!")
 ;; mmc: what is this?
    (define-xterm-command 'elinks
     #:command  "rxvt -geometry 100x60 -sb +ls"           ; -tn xterm
-    ;;  "/usr/X11R6/bin/xterm +wf +sb -sl 500 -j -ls +dc -u8" 
+    ;;  "/usr/X11R6/bin/xterm +wf +sb -sl 500 -j -ls +dc -u8"
     #:program (concat links-program " -no-connect www.wsws.org"))
 
 
@@ -529,7 +530,7 @@ Every one is run only on the first matching window!")
                   ;;(interactive "nNumber: ")
                   )
 
-(define-command 'urxvt 
+(define-command 'urxvt
                   ;;"Start a new WIDE xterm."
   (lambda ()
     (my-xterm
@@ -552,7 +553,7 @@ Every one is run only on the first matching window!")
 
 ;;  Beta -> host
 ;;  michal -> ..
-;;  
+;;
 
 ;; access-log !
 
@@ -561,5 +562,4 @@ Every one is run only on the first matching window!")
 ;; Keys -> host ??
 
 
-;; todo: 
-
+;; todo:
