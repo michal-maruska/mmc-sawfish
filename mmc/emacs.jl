@@ -54,8 +54,8 @@
      sawfish.wm.util.prompt)
 
 
-  (defconst emacs-binary "/usr/bin/emacs"
-    ;"/x/cvs/gnu/emacs/src/emacs"
+  (defvar emacs-binary "/usr/bin/emacs"
+					;;"/x/cvs/gnu/emacs/src/emacs"
     )
 ;;; New session:
   (define (gemacs)                      ; would be go-emacs
