@@ -94,4 +94,6 @@
 
 (bind-keys global-keymap
   "H-F11"
-  '(call-process nil nil "gnome-screensaver-command" "-l"))
+  '(call-process nil nil
+		 ;;"gnome-screensaver-command" "-l"
+		 "xlock"))
