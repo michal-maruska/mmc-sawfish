@@ -169,13 +169,14 @@
       (unless (consp current)
         (setq current '()))
       ;; if
-      (delete-if
-          (lambda (item)
-            ;; or invalid ?
-            (equal
-             (weak->window item)
-             window))
-        current)
+      (setq current
+	    (delete-if
+		(lambda (item)
+		  ;; or invalid ?
+		  (equal
+		   (weak->window item)
+		   window))
+	      current))
       (push! current (make-weak-ref window))
       (table-set wid->window-table wid current)
       (set-x-property window 'WM_WID wid 'STRING 8))) ;fixme: if it's a list of Wids ?
