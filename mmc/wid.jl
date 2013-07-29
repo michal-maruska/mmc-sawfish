@@ -77,7 +77,7 @@
                                         ;rep.mmsystem not used here
      sawfish.wm                         ;, sawfish.wm.misc.
      sawfish.wm.windows
-     
+
      sawfish.wm.misc                    ;call-with-keyboard-grabbed
      sawfish.wm.events
      sawfish.wm.commands
@@ -162,7 +162,7 @@
            (filter-morphing weak->window stack))
         '())))
 
-;; setter:  
+;; setter:
   (define (bind-wid-to-window wid window)
     ;; if already there, put at the beginning ?
     (let ((current (table-ref wid->window-table wid)))
