@@ -77,8 +77,8 @@
 		  ;; fixme: not dynamic:
 		  ;(inexact->exact (round (/ (screen-width) 18 1.4)))
 
-		  (inexact->exact (round (/ (screen-width) 18)))
-                  (inexact->exact (round (/ (screen-height) 23 1.5)))))
+		  (inexact->exact (round (/ (car (head-dimensions 0)) 13)))
+                  (inexact->exact (round (/ (cdr (head-dimensions 0)) 23 1.5)))))
 
   "the default command & args"
   :group (xterm)
