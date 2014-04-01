@@ -20,6 +20,9 @@
   )
 
 
+(bind-keys global-keymap
+  "XF86AudioMute" (lambda ()
+		    (system "/home/michal/bin/speakers t")))
 
 
 (bind-keys global-keymap
