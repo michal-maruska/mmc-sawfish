@@ -19,6 +19,7 @@
 	  sawfish.wm.custom
 	  sawfish.wm.commands
 	  sawfish.wm.workspace
+	  sawfish.wm.util.workarea
 	  sawfish.wm.util.stacking
 	  sawfish.wm.commands)
 
@@ -35,6 +36,9 @@
 
   ;; -1 0 1
   ;;
+  ;; (   pos(   wid)  size)
+  ;; selector moves the inner to the extreme, or not.
+  ;;
   (define (shift selector position size width)
     (cond ((eq selector -1)
 	   0)
@@ -44,21 +48,35 @@
 	   (- size width)
 	   )))
 
+;; within a head ->
   (define (move-to-extreme w vert hor)
-    ""
-    (let((desired-x				;<---->
-	  (shift
-	   hor
-	   (car (window-position w))
-	   (screen-width)
-	   (car (window-frame-dimensions w))))
-	 (desired-y
-	 (shift
-	  vert
-	  (cdr (window-position w))
-	  (screen-height)
-	  (cdr (window-frame-dimensions w)))))
-      (corner-window-position w desired-x desired-y)))
+;    ""
+    (let* ((rectangle (calculate-workarea))
+	   ;; (LEFT TOP RIGHT BOTTOM [WEIGHT])
+           ;; limit from...
+	   (head (current-head w))
+           (max-dimension (cons
+                           (- (nth 2 rectangle) (nth 0 rectangle))
+                           (- (nth 3 rectangle) (nth 1 rectangle))))
+	   (position (window-position w))
+	   (offset (head-offset 0))
+           ;(offset '(0 . 0))
+           ;;
+           (desired-x
+            (shift
+             hor
+             (car (window-position w))
+             (car max-dimension)
+             (car (window-frame-dimensions w))))
+           (desired-y
+            (shift
+             vert
+             (cdr (window-position w))
+             (cdr max-dimension)
+             (cdr (window-frame-dimensions w)))))
+      (corner-window-position w
+			      (+ (nth 0 rectangle) desired-x)
+			      (+ (nth 1 rectangle) desired-y))))
 
   ;; (move (input-focus) 1 0)
   (define-command 'extreme-window-se
