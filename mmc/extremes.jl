@@ -21,9 +21,12 @@
 	  sawfish.wm.workspace
 	  sawfish.wm.util.workarea
 	  sawfish.wm.util.stacking
-	  sawfish.wm.commands)
+	  sawfish.wm.commands
+
+	  rep.trace)
 
 
+    (define debug #f)
   ;;(define desired-x)
   ;;(define desired-y)
 
@@ -74,6 +77,7 @@
              (cdr (window-position w))
              (cdr max-dimension)
              (cdr (window-frame-dimensions w)))))
+      (DB "rectangle %s %s %s" rectangle desired-y desired-x)
       (corner-window-position w
 			      (+ (nth 0 rectangle) desired-x)
 			      (+ (nth 1 rectangle) desired-y))))
