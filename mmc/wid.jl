@@ -341,7 +341,12 @@
     (DB "add-wid-to-new-window\n")
     (if wid-4-new-window
         (bind-wid-to-window wid-4-new-window window))
-    (setq wid-4-new-window #f))
+    (setq wid-4-new-window #f)
+
+    (cond
+     ((string=? (window-class window) Claws-mail)
+      (bind-wid-to-window "M" window))
+     ))
 
 
 ;;; this only if you have mmsystem.jl
@@ -358,6 +363,13 @@
 ;(get-x-property (input-focus) 'WM_WID)
 
 
+;; (define add-wid (window)
+;;   (cond
+;;    ((string=? (window-class window) Claws-mail)
+;;     (add-wid
+;;     )
+;;   )
 
+; (add-hook-s 'after-add-window-hook add-wid)
 
 ;; iconify removes the window-order !!
