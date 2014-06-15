@@ -24,7 +24,8 @@
 ;;  This module is about an (n->m) mapping of wids to windows.
 
 ;;  OPERATIONS with wids:
-;;  `wid-assign-wid-to-window'  promts for a wid, reads it, and puts the current window
+;;  `wid-assign-wid-to-window' promts for a wid, reads it,
+;;  and puts the current window
 ;;  to the set of windows associated w/ the wid
 
 ;; `wid-goto-window'   prompts for a wid, and  actives the first window from the set associated w/ the wid
@@ -33,7 +34,7 @@
 
 
 ;;  FAQ:
-;;  Q:   How to cycle through the windows associated w/ a given wid?  
+;;  Q:   How to cycle through the windows associated w/ a given wid?
 ;;  A: go to the wid, an implicit `search' is formed, and you can x-cycle through it.
 ;;     This `search' is formed by iswitch-window as well.
 
@@ -107,10 +108,10 @@
 ;; methods:  suggest-wid, save
 
 
-  
+
 ;; global, since we want to survive a reload
 ;; the value is a weak pointer to the window.
-  (defvar wid->window-table (make-table string-hash equal-hash)  
+  (defvar wid->window-table (make-table string-hash equal-hash)
     "List of used wids.  The mapping")
 ;; (setq wid->window-table (make-table string-hash equal-hash))
 
@@ -134,7 +135,7 @@
           (table-ref table (string-upcase wid)))
         (unless (string-lower-case-p wid)
           (table-ref table (string-downcase wid)))))
-      
+
 ;;; SETTER & GETTER:
   (define (get-wid->window wid)
     (let ((stack (items-under-wid wid->window-table wid))) ;
@@ -215,14 +216,14 @@
         (setq event (wid-read "window wid")))
       (if (not event)
           (throw 'command-canceled #f)
-        
+
         ;; and-let !!!!
         (let* ((windows (get-wid->windows event))) ;(event-name
           (if (not (null windows))
               (let ((window (car windows)))
                 (setq current-search windows)
                                         ;(display-information )
-                
+
                 (display-information
                  (format #f "%s"
                          (mapconcat window-name current-search "\n"))) ;windows
@@ -255,7 +256,7 @@
       (display-information "wid stored")))
 
   (define-command 'wid-store wid-store)
-;;(define wid-timer (make-timer wid-store 100)) 
+;;(define wid-timer (make-timer wid-store 100))
 
   (define (wid-restore)
     ;; get from the file:
@@ -315,7 +316,7 @@
 
       ;; i have to grab, b/c after we 1/ release the passive-key  we lose
       ;; and                          2/ wid-read cleans its grab too.
-      (call-with-keyboard-grabbed       ;'(#f #f #t) ; hm ?? 
+      (call-with-keyboard-grabbed       ;'(#f #f #t) ; hm ??
        (lambda ()
          (let* ((windows (wid-read-key-and-get-window))
                 (window (car windows)))

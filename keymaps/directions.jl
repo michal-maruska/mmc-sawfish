@@ -17,7 +17,8 @@
 ;; this is quite hacky:
 ;; b/c i know better.
 ;;   prefix-of-command     key-prefix  suffixes
-(define (bind-directions cmd-prefix key-prefix suffix-list #!key (keymap global-keymap))
+(define (bind-directions cmd-prefix key-prefix suffix-list
+			 #!key (keymap global-keymap))
   "Bind a set of directional versions of the same command to keys:
 keys are given by KEY-PREFIX + arrow key
 and the commands are given by CMD-PREFIX followed by up/down/left/right"
@@ -28,6 +29,8 @@ and the commands are given by CMD-PREFIX followed by up/down/left/right"
                          (bind-keys keymap
                            (concat key-prefix key-suff) symbol)))))
     (mapcar my-bind-one suffix-list)))
+
+
 
 
 (let ((standard
