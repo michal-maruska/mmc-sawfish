@@ -48,3 +48,6 @@
       (lambda (,variable)
         ,@body)))
 )
+
+
+;; I had to (mm-remove-hook-symbol 'unbound-key-hook 'key-processor)
