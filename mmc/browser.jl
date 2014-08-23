@@ -35,6 +35,7 @@
           (string= class  "Firefox-bin")
 	  (string= class  "Firefox")
 	  (string= class  "Chromium-browser")
+	  (string= class  "Chromium")
 	  (string= class  "Google-chrome")
 
 	  (string= class  "Minefield")
