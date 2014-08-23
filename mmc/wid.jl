@@ -344,7 +344,7 @@
     (setq wid-4-new-window #f)
 
     (cond
-     ((string=? (window-class window) Claws-mail)
+     ((string= (window-class window) Claws-mail)
       (bind-wid-to-window "M" window))
      ))
 
@@ -365,7 +365,7 @@
 
 ;; (define add-wid (window)
 ;;   (cond
-;;    ((string=? (window-class window) Claws-mail)
+;;    ((string= (window-class window) Claws-mail)
 ;;     (add-wid
 ;;     )
 ;;   )
