@@ -1,3 +1,18 @@
+mmc-sawfish (1.6.1) release; urgency=medium
+
+  * compute the xterm size relative to xinerama head, rather than screen.
+  * format
+  * add M wid to Claws-mail windows
+  * Use workarea to see the intended extremes (to not occlude toolbars)
+  * comment about some bug w/ key handling
+  * bind mute-speakers key
+  * debug Extremes
+  * Add Chromium as browser
+  * fix wid
+  * fix claws
+
+ -- Michal Maruska <mmaruska@gmail.com>  Tue, 16 Sep 2014 21:58:40 +0200
+
 mmc-sawfish (1.5) release; urgency=low
 
   * use xlock.
