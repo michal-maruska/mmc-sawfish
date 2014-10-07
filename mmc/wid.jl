@@ -122,6 +122,7 @@
       (and window
            (windowp window)
            (window-live? window)
+	   (window-mapped-p window)
            window)))
 
 ;;  We test:   a-> a A
