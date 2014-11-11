@@ -54,7 +54,7 @@
 ;; within a head ->
   (define (move-to-extreme w vert hor)
 ;    ""
-    (let* ((rectangle (calculate-workarea))
+    (let* ((rectangle (calculate-workarea #:window w)) ;on  current  head
 	   ;; (LEFT TOP RIGHT BOTTOM [WEIGHT])
            ;; limit from...
 	   (head (current-head w))
@@ -62,22 +62,24 @@
                            (- (nth 2 rectangle) (nth 0 rectangle))
                            (- (nth 3 rectangle) (nth 1 rectangle))))
 	   (position (window-position w))
-	   (offset (head-offset 0))
+	   (relative-position (cons (- (car position) (nth 0 rectangle))
+				    (- (cdr position) (nth 1 rectangle))))
+	   (offset (head-offset head))
            ;(offset '(0 . 0))
            ;;
            (desired-x
             (shift
              hor
-             (car (window-position w))
+             (car relative-position)
              (car max-dimension)
              (car (window-frame-dimensions w))))
            (desired-y
             (shift
              vert
-             (cdr (window-position w))
+             (cdr relative-position)
              (cdr max-dimension)
              (cdr (window-frame-dimensions w)))))
-      (DB "rectangle %s %s %s" rectangle desired-y desired-x)
+      (DB "rectangle %s %s %s\n" rectangle desired-y desired-x)
       (corner-window-position w
 			      (+ (nth 0 rectangle) desired-x)
 			      (+ (nth 1 rectangle) desired-y))))
