@@ -1,3 +1,14 @@
+mmc-sawfish (1.6.2) release; urgency=medium
+
+  * Wid: ignore windows iconified by clients.
+  * Finally fixed.
+  * reformatting
+  * I use debian  -> iceweasel
+  * spaces
+  * cdbs->dh
+
+ -- Michal Maruska <mmaruska@gmail.com>  Sun, 09 Aug 2015 22:46:44 +0200
+
 mmc-sawfish (1.6.1) release; urgency=medium
 
   * compute the xterm size relative to xinerama head, rather than screen.
