@@ -52,8 +52,7 @@
 
 ;; to add the current one:
 ;;(window-class (get-window-by-name-re "Mozilla "))
-  
-  
+
   (define (netscape-running?)
     "is the browser running"            ; dcop is so nice !!
     (filter-windows mozilla-window?))
@@ -71,7 +70,7 @@
       ;(system-bg "/opt/firefox/firefox -remote \"openurl(,new-window)\"")
       (system-bg "firefox -browser")
       ))
-    
+
 ;; "%s %s lynx >/dev/null 2>&1 </dev/null &"
 
   (define (netscape-url url)
@@ -80,7 +79,7 @@
                                         ;(system (format #f "%s -remote 'openURL(%s,new-window)'&" (netscape-program) url))
         (system (format #f "%s '%s'&" (netscape-program) url))
       (system-bg (format nil "%s %s" (netscape-program) url))))
-     
+
 ;; (interactive "s")
 
 ;; "%s %s lynx >/dev/null 2>&1 </dev/null &"
@@ -112,7 +111,7 @@
   (define-command 'browse open-browser)
 
 
-  (define-command 'mozilla 
+  (define-command 'mozilla
     (lambda () (system-bg "/usr/bin/mozilla")))
 
 
