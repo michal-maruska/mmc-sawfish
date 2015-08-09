@@ -355,7 +355,7 @@
   (define (iswitch-update-class wlist types)
     "the class of window must be one of TYPES (a list of strings)"
     (filter (lambda (w)
-                                        ;(string= type (window-class w)))
+                                        ;;(string= type (window-class w)))
               (member  (window-class w) types))
             wlist))
 
@@ -459,12 +459,13 @@
       (setq criterions '()))
     (call-with-keyboard-grabbed
      (lambda ()
-       (let ((display-timer #f))        ;mmc:  this is when i want to press more keys at once, skipping the initial  all-windows display
+       (let ((display-timer #f))
+	 ;; mmc:  this is when i want to press more keys at once, skipping the initial  all-windows display
          ;; fixme: make it a fluid!
          (setq current-criterion criterions)
          (unwind-protect
              (let* ((input "")          ;  current string to be matched
-                                        ;(constraints ())    ;  other (non textual) constraints  (workspace, viewport, state, ...)
+		    ;(constraints ())    ;  other (non textual) constraints  (workspace, viewport, state, ...)
                     (init-wlist
                      (replay-criterions current-criterion))
                     (focused-window (car init-wlist))
@@ -473,14 +474,14 @@
                     wlist               ; matching windows ?
                     (display-function
                      (lambda ()
-                       (if (< (length wlist) 2)
-                           ;; bug: this will raise the window too! But C code wil
-                           ;; then focus & raise (possibly) another window!
-                           (display-window (car wlist))) ;-without-focusing
+                       (when (< (length wlist) 2)
+			 ;; bug: this will raise the window too! But C code wil
+			 ;; then focus & raise (possibly) another window!
+			 (display-window (car wlist))) ;-without-focusing
                        (iswitch-display current-criterion input wlist))))
                ;; put the current at the end:
-               (setq init-wlist (append (cdr init-wlist) (list focused-window))
-                     wlist init-wlist)
+		  (setq init-wlist (append (cdr init-wlist) (list focused-window))
+			wlist init-wlist)
 
 ;;; how we make a recursive event loop:
 
