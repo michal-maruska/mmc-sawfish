@@ -34,6 +34,8 @@
           (string= class  "netscape")
           (string= class  "Firefox-bin")
 	  (string= class  "Firefox")
+	  (string= class  "Iceweasel")
+
 	  (string= class  "Chromium-browser")
 	  (string= class  "Chromium")
 	  (string= class  "Google-chrome")
