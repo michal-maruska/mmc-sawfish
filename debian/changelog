@@ -1,3 +1,9 @@
+mmc-sawfish (1.6.3) release; urgency=medium
+
+  * Another WM class for Chromium.
+
+ -- Michal Maruska <michal@ubuntu>  Tue, 27 Oct 2015 08:19:52 +0100
+
 mmc-sawfish (1.6.2) release; urgency=medium
 
   * Wid: ignore windows iconified by clients.
