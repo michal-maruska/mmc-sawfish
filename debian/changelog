@@ -1,3 +1,9 @@
+mmc-sawfish (1.6.4) release; urgency=medium
+
+  * Make the browser-class case-insensitive
+
+ -- Michal Maruska <mmaruska@gmail.com>  Sun, 21 Feb 2016 16:48:44 +0100
+
 mmc-sawfish (1.6.3) release; urgency=medium
 
   * Another WM class for Chromium.
