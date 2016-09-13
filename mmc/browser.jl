@@ -38,6 +38,7 @@
 	       (string= class  "Iceweasel")
 
 	       (string= (string-downcase class)  "google-chrome")
+	       (string= (string-downcase class)  "google-chrome-beta")
 	       (string= (string-downcase class)  "chromium-browser")
 	       (string= (string-downcase class) "chromium")
 
@@ -152,5 +153,4 @@
 
   (define (mgoogle)
     (netscape-remote "http://www.google.com"))
-  (define-command 'mgoogle mgoogle)
-)
+  (define-command 'mgoogle mgoogle))
