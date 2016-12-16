@@ -414,7 +414,7 @@ Every one is run only on the first matching window!")
     (apply my-xterm
            ;; [03 nov 05]   i'm changing the xterm!
            #:command  links-xterm
-	   ;;"rxvt -geometry 100x60 +ls" ;; no scrollbar needed!          ; -tn xterm
+           ;;"rxvt -geometry 100x60 +ls" ;; no scrollbar needed!          ; -tn xterm
            #:program (concat
                       (format #f "%s" links-program);-base-session=1  -no-connect
                       (if url
@@ -442,13 +442,13 @@ Every one is run only on the first matching window!")
     (let ((selection-atom 'PRIMARY))
       (if (not (x-selection-active-p selection-atom))
           (links #f #f)
-	(let ((selection (x-get-selection selection-atom)))
-	  (if (and (stringp selection)
-		   (or (string-match "^https?:" selection)
-		       (string-match "^[-a-z0-9A-Z.]*\\.(org|net|com|us|it|cz)$" selection) ;"mike-west.org"
-		       ))
-	      (links #f selection)
-	    (links #f #f)))))))
+        (let ((selection (x-get-selection selection-atom)))
+          (if (and (stringp selection)
+                   (or (string-match "^https?:" selection)
+                       (string-match "^[-a-z0-9A-Z.]*\\.(org|net|com|us|it|cz)$" selection) ;"mike-west.org"
+                       ))
+              (links #f selection)
+            (links #f #f)))))))
 
 (define-command 'google-maybe-selection
   (lambda ()
