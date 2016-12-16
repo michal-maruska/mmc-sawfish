@@ -1,4 +1,3 @@
-
 ;;; xterm `applications'  still unused
 
 (require 'mmc.xterm)
@@ -18,10 +17,10 @@
         (prompt-for-number prompt)
       ;;
       (let ((selection (x-get-selection selection-atom)))
-	(if (and (stringp selection)
-		 (string-match "^[0-9]+$" selection))
-	    (string->number selection)
-	  (prompt-for-number prompt))))))
+        (if (and (stringp selection)
+                 (string-match "^[0-9]+$" selection))
+            (string->number selection)
+          (prompt-for-number prompt))))))
 
 
 ;; Get the number from selection!
@@ -29,12 +28,12 @@
   (lambda (numero)
     ;;  (lambda (numero)
     (system-bg (concat "run-browser.scm  " (number->string numero)))) ;(number->string numero)
-  
+
                                         ;'(list (prompt-for-number "br: "))
-  ;; 70732 
+  ;; 70732
   #:spec (lambda ()
           (list (get-number-selection "br: "))))
-    
+
 
 
 (bind-keys my-application-map
@@ -46,7 +45,7 @@
 
   "d" (lambda ()
         (system-bg "mdb.scm"))
-  
+
   "x" (lambda ()
         (system-bg "xemacs"))
 
@@ -85,4 +84,3 @@
 
 
 (bind-keys global-keymap "H-y" my-application-map)
-

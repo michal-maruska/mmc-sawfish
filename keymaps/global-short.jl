@@ -1,4 +1,3 @@
-
 (require 'mmc.simple)
 
 
@@ -22,7 +21,7 @@
 
 (bind-keys global-keymap
   "XF86AudioMute" (lambda ()
-		    (system "/home/michal/bin/speakers t")))
+                    (system "/home/michal/bin/speakers t")))
 
 
 (bind-keys global-keymap
@@ -85,8 +84,6 @@
   "H-C- " 'display-backtrace)
 
 
-
-
 ; some users use arrows !
 (bind-keys global-keymap
   "s-h-Up" 'slide-window-up
@@ -99,5 +96,5 @@
 (bind-keys global-keymap
   "H-F11"
   '(call-process nil nil
-		 ;;"gnome-screensaver-command" "-l"
-		 "xlock"))
+                 ;;"gnome-screensaver-command" "-l"
+                 "xlock"))
