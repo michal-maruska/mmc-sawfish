@@ -49,6 +49,7 @@
 
 
   "H-t" 'my-xterm
+  "H-T" 'my-small-xterm
   "H-C-t" 'rsh-to
   "H-C-r" 'su-to
 

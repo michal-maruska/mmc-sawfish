@@ -69,6 +69,7 @@
   ;"q" 'links
   "Q" 'links-google
   "t" 'xterm
+  "T" 'my-small-xterm
                                         ;"a" 'mixer-uniconify
   "c" (lambda ()
                                         ;(system-bg "kcalc")
