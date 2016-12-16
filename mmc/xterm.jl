@@ -224,6 +224,10 @@ Every one is run only on the first matching window!")
       (lambda ()
         (apply my-xterm args))))
 
+(define-xterm-command 'elinks-small
+  #:font "-*-lucidatypewriter-medium-r-normal-*-14-*-*-*-*-*-*"
+  #:program "elinks")
+
 
   (define-command 'rsh                  ; not necessarily RSH, but SSH !
     (lambda ()
@@ -243,7 +247,10 @@ Every one is run only on the first matching window!")
       (my-xterm #:font (language->font "en")
                 #:priority 0)))
 
-
+  (define-command 'my-small-xterm
+    (lambda ()
+      (my-xterm #:font "-*-lucidatypewriter-*-r-normal-*-14-*-*-*-*-*-*"
+                #:priority 0)))
 
  (defcustom access-log-host "linux2"
    "hostname where Apache is running & where access-log file is monitored"
