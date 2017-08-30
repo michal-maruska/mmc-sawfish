@@ -338,16 +338,23 @@
     ;; called before running an external process, which will map/open a new window
     (setq wid-4-new-window wid))
 
+  (defvar wid-window-matchers () "")
+  (define (try-to-assign-wid window)
+    (mapcar
+     (lambda (item)
+       (if ((cdr item) window)
+           (bind-wid-to-window (car item) window)))
+     wid-window-matchers))
+
   (define (add-wid-to-new-window window)
     (DB "add-wid-to-new-window\n")
     (if wid-4-new-window
-        (bind-wid-to-window wid-4-new-window window))
-    (setq wid-4-new-window #f)
-
-    (cond
-     ((string= (window-class window) "Claws-mail")
-      (bind-wid-to-window "M" window))
-     ))
+        (progn
+          (bind-wid-to-window wid-4-new-window window)
+          (setq wid-4-new-window #f))
+      ;; else:
+      (try-to-assign-wid window)
+      ))
 
 
 ;;; this only if you have mmsystem.jl
