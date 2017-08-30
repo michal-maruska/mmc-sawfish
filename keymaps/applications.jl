@@ -71,9 +71,7 @@
   "T" 'my-small-xterm
                                         ;"a" 'mixer-uniconify
   "c" (lambda ()
-                                        ;(system-bg "kcalc")
-        (system-bg "gcalctool")
-        )
+        (system-bg "gnome-calculator"))
   "C" (lambda ()
         (system-bg "xchat -a"))
 
