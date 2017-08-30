@@ -470,7 +470,7 @@ Every one is run only on the first matching window!")
    (define-xterm-command 'elinks
     #:command  "rxvt -geometry 100x60 -sb +ls"           ; -tn xterm
     ;;  "/usr/X11R6/bin/xterm +wf +sb -sl 500 -j -ls +dc -u8"
-    #:program (concat links-program " -no-connect www.wsws.org"))
+    #:program (concat links-program " -no-connect www.wsws.org/mobile"))
 
 
 
