@@ -460,12 +460,12 @@
     (call-with-keyboard-grabbed
      (lambda ()
        (let ((display-timer #f))
-	 ;; mmc:  this is when i want to press more keys at once, skipping the initial  all-windows display
+         ;; mmc:  this is when i want to press more keys at once, skipping the initial  all-windows display
          ;; fixme: make it a fluid!
          (setq current-criterion criterions)
          (unwind-protect
              (let* ((input "")          ;  current string to be matched
-		    ;(constraints ())    ;  other (non textual) constraints  (workspace, viewport, state, ...)
+                    ;(constraints ())    ;  other (non textual) constraints  (workspace, viewport, state, ...)
                     (init-wlist
                      (replay-criterions current-criterion))
                     (focused-window (car init-wlist))
@@ -475,13 +475,13 @@
                     (display-function
                      (lambda ()
                        (when (< (length wlist) 2)
-			 ;; bug: this will raise the window too! But C code wil
-			 ;; then focus & raise (possibly) another window!
-			 (display-window (car wlist))) ;-without-focusing
+                         ;; bug: this will raise the window too! But C code wil
+                         ;; then focus & raise (possibly) another window!
+                         (display-window (car wlist))) ;-without-focusing
                        (iswitch-display current-criterion input wlist))))
                ;; put the current at the end:
-		  (setq init-wlist (append (cdr init-wlist) (list focused-window))
-			wlist init-wlist)
+                  (setq init-wlist (append (cdr init-wlist) (list focused-window))
+                        wlist init-wlist)
 
 ;;; how we make a recursive event loop:
 
@@ -537,7 +537,7 @@
                              (iswitch-add-condition! wlist '(class "Emacs")))
 
 
-			    ((equal key "M-s")
+                            ((equal key "M-s")
                              (iswitch-add-condition! wlist '(class "Skype")))
 
 
@@ -594,20 +594,20 @@
                             ;;"navigator:browser"
                             ;;"Mozilla-bin"
                             ((equal key "M-m")
-			     ;; fixme: see browser.jl
+                             ;; fixme: see browser.jl
                              (iswitch-add-condition!
                               wlist
-			      `(predicate
-				,mozilla-window?)
+                              `(predicate
+                                ,mozilla-window?)
                               ))
                                         ;"galeon_browser"
 
-			    ((equal key "M-p")
-			     ;; fixme: see browser.jl
+                            ((equal key "M-p")
+                             ;; fixme: see browser.jl
                              (iswitch-add-condition!
                               wlist
-			      `(predicate
-				,git-browser-window?)
+                              `(predicate
+                                ,git-browser-window?)
                               ))
                             ((equal key "C-v") ; limit to the current viewport
                              ;; fixme!
@@ -748,14 +748,14 @@
     (lambda ()
       ;; move-window-to-workspace w old new
       (let ((window (safe-car (iswitch-get-windows '()
-				      ;`((workspace ,current-workspace))
+                                      ;`((workspace ,current-workspace))
 
-				      )))
-	    )
-	(when window
-	;(display-window
-	  (move-window-to-workspace window 0 current-workspace)
-	  (display-window window)
+                                      )))
+            )
+        (when window
+        ;(display-window
+          (move-window-to-workspace window 0 current-workspace)
+          (display-window window)
        ))))
 
 ;; ??? this should be an interactive  #:spec   !
