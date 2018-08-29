@@ -1,3 +1,20 @@
+mmc-sawfish (1.6.5) release; urgency=medium
+
+  * wsws mobile
+  * google chrome beta
+  * small xterm
+  * spaces
+  * small
+  * tabs
+  * wsws mobile
+  * wid-window-matchers
+  * gnome-calculator
+  * use httpS for Google
+  * Update for new Gitk class
+  * Extend the browser class matcher
+
+ -- Michal Maruska <michal@ubuntu>  Wed, 29 Aug 2018 11:04:47 +0200
+
 mmc-sawfish (1.6.4) release; urgency=medium
 
   * Make the browser-class case-insensitive
