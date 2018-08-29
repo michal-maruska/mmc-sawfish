@@ -483,7 +483,7 @@ Every one is run only on the first matching window!")
 
 
 ;; Use alist ... or better, a file?
-  (define-links-command 'google "en" "http://www.google.com/")
+  (define-links-command 'google "en" "https://www.google.com/")
 
   (define-links-command 'wikinews "en" "http://en.wikinews.org/wiki/Main_Page")
   (define-links-command 'links-cz "cz" "http://www.linux.cz/index.old.html")
