@@ -49,8 +49,7 @@
   (define (git-browser-window? w)
     (let ((class  (window-class w)))
       (or (string= class  "P4v.bin")
-          (string= class  "gitk")
-	  )))
+          (string= class  "Gitk"))))
 
 ;; to add the current one:
 ;;(window-class (get-window-by-name-re "Mozilla "))
