@@ -1,3 +1,9 @@
+mmc-sawfish (1.6.6) release; urgency=medium
+
+  * spaces
+
+ -- Michal Maruska <mmaruska@gmail.com>  Wed, 29 Aug 2018 11:17:56 +0200
+
 mmc-sawfish (1.6.5) release; urgency=medium
 
   * wsws mobile
