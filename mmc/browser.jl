@@ -1,4 +1,3 @@
-
 ;;; Netscape/mozilla etc
 
 (define-structure mmc.browser
@@ -25,26 +24,26 @@
      mmc.simple
      )
 
-
   ;; mozilla has changed the window class, in the past.
   (define (mozilla-window? w)
     (let ((class  (window-class w)))
+      (format 't "%s" class)
       (and (stringp class)
-	   (or (string= class  "Mozilla")
-	       (string= class  "MozillaFirebird-bin")
-	       (string= class  "netscape")
-	       (string= class  "Firefox-bin")
-	       (string= class  "Firefox")
-	       (string= class  "Iceweasel")
+           (or (string= class  "Mozilla")
+               (string= class  "MozillaFirebird-bin")
+               (string= class  "netscape")
+               (string= class  "Firefox-bin")
+               (string= class  "Firefox")
+               (string= class  "Iceweasel")
 
-	       (string= (string-downcase class)  "google-chrome")
-	       (string= (string-downcase class)  "google-chrome-beta")
-	       (string= (string-downcase class)  "chromium-browser")
-	       (string= (string-downcase class) "chromium")
+               (string= (string-downcase class)  "google-chrome")
+               (string= (string-downcase class)  "google-chrome-beta")
+               (string= (string-downcase class)  "chromium-browser")
+               (string= (string-downcase class) "chromium")
 
-	       (string= class  "Minefield")
-	       (string= class  "Nightly")
-	       ))))
+               (string= class  "Minefield")
+               (string= class  "Nightly")
+               ))))
 
   (define (git-browser-window? w)
     (let ((class  (window-class w)))
@@ -101,8 +100,8 @@
         galeon-path)
        (#t                              ;else
         ;"/usr/local/netscape/netscape"
-	"firefox"
-	))))
+        "firefox"
+        ))))
 
   (define (open-browser)
     (if (netscape-running?)
