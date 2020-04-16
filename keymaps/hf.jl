@@ -1,4 +1,3 @@
-
 (require 'mmc.cycle)
 
 
@@ -13,7 +12,7 @@
 
   "C-i" 'maximize-fill-window-vertically-toggle
   "C-j" 'maximize-fill-window-horizontally-toggle
-  
+
   "i" 'maximize-window-vertically-toggle ;fill
   "k" 'maximize-window-toggle
   "u" 'maximize-window-fullscreen-toggle
@@ -44,11 +43,11 @@
   "f" 'my-resize-window
 
   "v" 'my-resize-right-bottom
-  ;; testing 
+  ;; testing
 
   ;;   "H-f" (lambda ()
-  ;; 	  (interactive)
-  ;; 	  (message "double H-f"))
+  ;;      (interactive)
+  ;;      (message "double H-f"))
 
   "b" 'bury-window
 

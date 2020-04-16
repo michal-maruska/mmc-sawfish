@@ -1,5 +1,3 @@
-
-
 (my-require 'mmc.my-move)
 
 
@@ -9,5 +7,3 @@
   "l" 'resize-half
   ";" 'resize-a4
   "r" 'my-resize-window)
-
-

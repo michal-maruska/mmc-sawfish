@@ -1,6 +1,3 @@
-
-
-
 (if (locate-file "window-info.jl"  load-path)
     (my-require 'window-info))
 
@@ -11,7 +8,7 @@
 (bind-keys my-change-window-status-keymap
   "i" 'iconify-window
   "I" 'iconify-group
-  
+
   "s" 'toggle-window-shaded
   "u" 'raise-window-depth		;raise-single-window
   "l" 'lower-window-depth		;raise-single-window
