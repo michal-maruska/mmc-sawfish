@@ -1,5 +1,3 @@
-
-
 (require 'mmc.workspace)
 
 
@@ -11,9 +9,9 @@
 
 
   "g" 'activate-workspace
-					;"w" 'activate-workspace
- 
-  "c" 'create-workspace 
+                                        ;"w" 'activate-workspace
+
+  "c" 'create-workspace
 
   "w" 'popup-window-list
 ;  "s" 'popup-workspace-list
@@ -23,15 +21,15 @@
   "l" 'next-workspace
   "." 'display-ws-name
 
-					; new
+                                        ; new
   "a" 'wid-goto-workspace
   "m" 'wid-assign-wid-to-workspace
 
   "r" 'rename-ws
-					; old
+                                        ; old
   "M-;" 'wid-assign-wid-to-workspace
   "H-A-i" 'wid-remove-wid-from-window
-  "H-M-;" 'wid-assign-wid-to-workspace 
+  "H-M-;" 'wid-assign-wid-to-workspace
   ";" 'wid-goto-workspace
   "H-;" 'wid-goto-workspace
 

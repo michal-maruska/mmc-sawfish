@@ -1,4 +1,3 @@
-
 ;; todo:  explain `elinks-url'
 
 
@@ -11,7 +10,6 @@
 (bind-keys my-browser-map
   "a" 'maruska
   "A" 'maruska2
-    
 
 
                                         ;"a" 'mixer-uniconify
@@ -46,5 +44,3 @@
   "W"  'lwn
                                         ;"u"  'netscape-unbind
   )
-
-

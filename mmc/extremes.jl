@@ -7,23 +7,23 @@
 (define-structure mmc.extremes
     (export)
     (open rep
-	  rep.system
-	  rep.regexp
-	  rep.data.ring
-	  sawfish.wm.windows
-	  sawfish.wm.events
-	  sawfish.wm.misc
-	  sawfish.wm.util.rects
-	  sawfish.wm.state.maximize
-	  sawfish.wm.state.iconify
-	  sawfish.wm.custom
-	  sawfish.wm.commands
-	  sawfish.wm.workspace
-	  sawfish.wm.util.workarea
-	  sawfish.wm.util.stacking
-	  sawfish.wm.commands
+          rep.system
+          rep.regexp
+          rep.data.ring
+          sawfish.wm.windows
+          sawfish.wm.events
+          sawfish.wm.misc
+          sawfish.wm.util.rects
+          sawfish.wm.state.maximize
+          sawfish.wm.state.iconify
+          sawfish.wm.custom
+          sawfish.wm.commands
+          sawfish.wm.workspace
+          sawfish.wm.util.workarea
+          sawfish.wm.util.stacking
+          sawfish.wm.commands
 
-	  rep.trace)
+          rep.trace)
 
 
     (define debug #f)
@@ -44,27 +44,27 @@
   ;;
   (define (shift selector position size width)
     (cond ((eq selector -1)
-	   0)
-	  ((eq selector 0)
-	   position)
-	  ((eq selector 1)
-	   (- size width)
-	   )))
+           0)
+          ((eq selector 0)
+           position)
+          ((eq selector 1)
+           (- size width)
+           )))
 
 ;; within a head ->
   (define (move-to-extreme w vert hor)
 ;    ""
     (let* ((rectangle (calculate-workarea #:window w)) ;on  current  head
-	   ;; (LEFT TOP RIGHT BOTTOM [WEIGHT])
+           ;; (LEFT TOP RIGHT BOTTOM [WEIGHT])
            ;; limit from...
-	   (head (current-head w))
+           (head (current-head w))
            (max-dimension (cons
                            (- (nth 2 rectangle) (nth 0 rectangle))
                            (- (nth 3 rectangle) (nth 1 rectangle))))
-	   (position (window-position w))
-	   (relative-position (cons (- (car position) (nth 0 rectangle))
-				    (- (cdr position) (nth 1 rectangle))))
-	   (offset (head-offset head))
+           (position (window-position w))
+           (relative-position (cons (- (car position) (nth 0 rectangle))
+                                    (- (cdr position) (nth 1 rectangle))))
+           (offset (head-offset head))
            ;(offset '(0 . 0))
            ;;
            (desired-x
@@ -81,8 +81,8 @@
              (cdr (window-frame-dimensions w)))))
       (DB "rectangle %s %s %s\n" rectangle desired-y desired-x)
       (corner-window-position w
-			      (+ (nth 0 rectangle) desired-x)
-			      (+ (nth 1 rectangle) desired-y))))
+                              (+ (nth 0 rectangle) desired-x)
+                              (+ (nth 1 rectangle) desired-y))))
 
   ;; (move (input-focus) 1 0)
   (define-command 'extreme-window-se
