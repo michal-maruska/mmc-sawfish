@@ -50,10 +50,13 @@
   (define debug #f)
   (defgroup xterm "xterm related")
 ;;; standard xterm: Fonts
-  (define (language->font language)
+  (define (language->font language #!key size)
     "given a language code, return the font to use for the xterm. #f -> don't specify"
     (cond
-     ((string= language "en") #f
+     ((string= language "en")
+      (if size
+          "-*-lucidatypewriter-*-r-normal-*-14-*-*-*-*-*-*"
+          #f)
       ;; use the default!  mine is  "-*-lucidatypewriter-medium-r-normal-*-20-*-*-*-*-*-*"   in ~/.Xdefaults
       )
      ((string= language "cz")
@@ -65,7 +68,7 @@
                                         ; "-*-helvetica-medium-r-*-*-34-*-*-*-*-*-*-r"
      ((string= language "rus5") "-*-*-*-r-normal--24-*-*-*-*-*-*-5")
                                         ; "-fn -etl-fixed-medium-r-normal-*-24-*-*-*-*-*-r "
-     ('t (language->font "en"))))
+     ('t (language->font "en" size))))
 
 
 
