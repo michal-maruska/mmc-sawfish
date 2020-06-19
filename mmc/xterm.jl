@@ -40,7 +40,7 @@
 
      sawfish.wm.util.selection
      sawfish.wm.misc
-     mmc.simple                      ; sytem-bg
+     mmc.simple                         ; sytem-bg
      mmc.wid
      mmc.my-apps
      rep.trace
@@ -56,12 +56,12 @@
      ((string= language "en")
       (if size
           "-*-lucidatypewriter-*-r-normal-*-14-*-*-*-*-*-*"
-          #f)
+        #f)
       ;; use the default!  mine is  "-*-lucidatypewriter-medium-r-normal-*-20-*-*-*-*-*-*"   in ~/.Xdefaults
       )
      ((string= language "cz")
       #f                                ; fixme:
-      ;"-*-lucidatypewriter-medium-r-*-20-*-*-*-*-*-*-2"
+                                        ;"-*-lucidatypewriter-medium-r-*-20-*-*-*-*-*-*-2"
       )
      ((string= language "rus") "-*-*-*-r-normal--24-*-*-*-*-*-*-5")
                                         ; "-fn -etl-fixed-medium-r-normal-*-24-*-*-*-*-*-r "
@@ -72,8 +72,8 @@
 
 
 
-;; this clashes w/ ...
-;; nice
+  ;; this clashes w/ ...
+  ;; nice
   (define (calculate-xterm-cmd)
     (concat "rxvt +sb -sl 500 -j -ls +vb "
             (format #f  "-geometry %dx%d"
@@ -92,17 +92,16 @@
     )
 
 
-;; (setq my-xterm-command  "xterm +wf +sb -sl 500 -j -ls -tm 'rprnt ^-'")  "xterm  +sb -sl 500 -j -ls -bg black -fg white ")
-;;  (setq my-xterm-command "xterm +sb -sl 500 -j -ls  +dc -wc -u8 +vb")
-
+  ;; (setq my-xterm-command  "xterm +wf +sb -sl 500 -j -ls -tm 'rprnt ^-'")  "xterm  +sb -sl 500 -j -ls -bg black -fg white ")
+  ;;  (setq my-xterm-command "xterm +sb -sl 500 -j -ls  +dc -wc -u8 +vb")
+  
   (define (host->rsh-program host)
     "different hosts accept different protocols"
     (declare (unused host))
     ;; i use ssh only, now. But unencrtypted might help, on lan.
     (if
-        ;nil
+                                        ;nil
         (member host '())		;"linux9"
-        ;;'("linux1" "linux2" "linux3" "linux4" "linux5" "linux6" "linux7" "linux8" "linux9" "linux10" "linux11" "linux12" "toshiba"))
         "rsh"
       "ssh -X"))
 
@@ -149,7 +148,7 @@
         (DB "%s vs. %s.\n" user (user-login-name))
         (setq program (concat "su - " user " " program))
         (unless title
-            (setq title program))
+          (setq title program))
                                         ;(or program )
         ))
     (let ((command-line
@@ -191,7 +190,7 @@
                                command-line)))
         ;;
         (system-bg command-line)
-        ))) ; I renice SF to -10, so this
+        )))                             ; I renice SF to -10, so this
 
 
 ;;;
@@ -225,9 +224,9 @@ Every one is run only on the first matching window!")
       (lambda ()
         (apply my-xterm args))))
 
-(define-xterm-command 'elinks-small
-  #:font "-*-lucidatypewriter-medium-r-normal-*-14-*-*-*-*-*-*"
-  #:program "elinks")
+  (define-xterm-command 'elinks-small
+    #:font "-*-lucidatypewriter-medium-r-normal-*-14-*-*-*-*-*-*"
+    #:program "elinks")
 
 
   (define-command 'rsh                  ; not necessarily RSH, but SSH !
@@ -237,7 +236,7 @@ Every one is run only on the first matching window!")
         (my-xterm #:user user
                   ;; #:title "ssh to remote"
                   #:hostname host
-                  ; #:title (concat "ssh " user "@" host)
+                                        ; #:title (concat "ssh " user "@" host)
                   ))))
 
 
@@ -253,30 +252,30 @@ Every one is run only on the first matching window!")
       (my-xterm #:font "-*-lucidatypewriter-*-r-normal-*-14-*-*-*-*-*-*"
                 #:priority 0)))
 
- (defcustom access-log-host "linux2"
-   "hostname where Apache is running & where access-log file is monitored"
-   :group (xterm)
-   ;; integer
-   :type string)                        ;hostname!
+  (defcustom access-log-host "linux2"
+    "hostname where Apache is running & where access-log file is monitored"
+    :group (xterm)
+    ;; integer
+    :type string)                       ;hostname!
 
-(define-command 'access-log
-  (lambda ()
-    (my-xterm
-     ;#:background "dim gray"
-     ;#:foreground "black"
-     #:background "wheat"
-     #:foreground "black"
+  (define-command 'access-log
+    (lambda ()
+      (my-xterm
+                                        ;#:background "dim gray"
+                                        ;#:foreground "black"
+       #:background "wheat"
+       #:foreground "black"
                                         ;#:background "white"
                                         ; #:foreground "black"
-     #:geometry "360x53+0+0"
-     #:font "10x20"
-     #:hostname access-log-host
-     #:user "root"
-     #:wid "S"
-     ;;
+       #:geometry "360x53+0+0"
+       #:font "10x20"
+       #:hostname access-log-host
+       #:user "root"
+       #:wid "S"
+       ;;
                                         ;#:login "rsh"
-     ;; args
-     )))
+       ;; args
+       )))
 
 
 
@@ -306,9 +305,9 @@ Every one is run only on the first matching window!")
 
   '(define-xterm-command 'ebay
                                         ;#:hostname "linux10"
-    #:wid "i"
+     #:wid "i"
                                         ;    #:program
-    )
+     )
 
   (define-xterm-command 'postgres
     #:wid "p"
@@ -322,8 +321,8 @@ Every one is run only on the first matching window!")
     #:user "postgres")
 
 
-;; H-r        user
-; (defcustom user-host
+  ;; H-r        user
+                                        ; (defcustom user-host
   (define-xterm-command 'beta
     #:wid "b"
     #:hostname "linux2"
@@ -335,9 +334,9 @@ Every one is run only on the first matching window!")
     #:user "mmc")
 
   '(define-xterm-command 'debian
-    #:wid "d"
-    #:hostname "linux5"
-    #:user "root")
+     #:wid "d"
+     #:hostname "linux5"
+     #:user "root")
 
 
   (define-xterm-command 'root
@@ -355,7 +354,7 @@ Every one is run only on the first matching window!")
     #:font "10x20")
 
 
-;; multilingual xterms:
+  ;; multilingual xterms:
   (define-xterm-command 'xtermrus
     #:font (language->font "rus"))
 
@@ -388,7 +387,7 @@ Every one is run only on the first matching window!")
 
 
 ;;; links
-;; todo: i need to edit numeric parameters:  links-session
+  ;; todo: i need to edit numeric parameters:  links-session
                                         ;(define-custom
   (defcustom links-session 0
     "elinks session to connect to."
@@ -397,16 +396,16 @@ Every one is run only on the first matching window!")
     :type number)
 
   (defcustom links-program
-    "elinks -session-ring 1" ;  -no-connect
+    "elinks -session-ring 1"            ;  -no-connect
     "Command to invoke links ... not used by `elinks-maybe-selection' "
     :group (xterm)
     :type string)
                                         ; (setq links-program "elinks  -session-ring 0")  -no-connect
-;; session-ring
+  ;; session-ring
   (define-xterm-command 'links
     ;; [05 ott 05]   -u8 but no color!
     ;; [05 ott 05]  was:  #:command "/usr/X11R6/bin/xterm +wf +sb -sl 500 -j -ls +dc -u8"
-    ;#:command  "rxvt -geometry 100x60 +sb +ls" ;; no scrollbar needed!          ; -tn xterm
+                                        ;#:command  "rxvt -geometry 100x60 +sb +ls" ;; no scrollbar needed!          ; -tn xterm
     #:program links-program)
 
 ;;; Links
@@ -419,49 +418,49 @@ Every one is run only on the first matching window!")
     (apply my-xterm
            #:command "rxvt -geometry 100x60 +ls" ;; no scrollbar needed!          ; -tn xterm
            #:program (concat
-                      (format #f "%s" links-program);-base-session=1  -no-connect
+                      (format #f "%s" links-program) ;-base-session=1  -no-connect
                       (if url
                           (format #f "%s '%s'" options url)
                         ""))
            #:font (language->font language #:size size)
            rest))
 
-(define-command 'elinks-maybe-selection
-  ;; Fixme: When i forgot (lambda()    I was getting freezes:
-  ;; SF was requesting selection, but nobody was answering: What does that mean?
-  (lambda ()
-    (let ((selection-atom 'PRIMARY))
-      (if (not (x-selection-active-p selection-atom))
-          (links #f #f)
+  (define-command 'elinks-maybe-selection
+    ;; Fixme: When i forgot (lambda()    I was getting freezes:
+    ;; SF was requesting selection, but nobody was answering: What does that mean?
+    (lambda ()
+      (let ((selection-atom 'PRIMARY))
+        (if (not (x-selection-active-p selection-atom))
+            (links #f #f)
+          (let ((selection (x-get-selection selection-atom)))
+            (if (and (stringp selection)
+                     (or (string-match "^https?:" selection)
+                         (string-match "^[-a-z0-9A-Z.]*\\.(org|net|com|us|it|cz)$" selection) ;"mike-west.org"
+                         ))
+                (links #f selection)
+              (links #f #f)))))))
+
+  (define-command 'google-maybe-selection
+    (lambda ()
+      (let ((selection-atom 'PRIMARY))
+        (if (not (x-selection-active-p selection-atom))
+            (links #f #f))
         (let ((selection (x-get-selection selection-atom)))
-          (if (and (stringp selection)
-                   (or (string-match "^https?:" selection)
-                       (string-match "^[-a-z0-9A-Z.]*\\.(org|net|com|us|it|cz)$" selection) ;"mike-west.org"
-                       ))
-              (links #f selection)
-            (links #f #f)))))))
-
-(define-command 'google-maybe-selection
-  (lambda ()
-    (let ((selection-atom 'PRIMARY))
-      (if (not (x-selection-active-p selection-atom))
-          (links #f #f))
-      (let ((selection (x-get-selection selection-atom)))
-        (if (stringp selection)
-            ;; a couple of words on 1 line!
+          (if (stringp selection)
+              ;; a couple of words on 1 line!
                                         ;(string-match "^http:" selection))
-            (progn
-              (setq selection (string-replace " " "+" selection))
-              ;; string-replace regexp template string
-              (links #f (concat "http://www.google.com/search?q=" selection)
-                      (options "-no-connect")
-                      ))
-          (links #f #f))))))
+              (progn
+                (setq selection (string-replace " " "+" selection))
+                ;; string-replace regexp template string
+                (links #f (concat "http://www.google.com/search?q=" selection)
+                       (options "-no-connect")
+                       ))
+            (links #f #f))))))
 
 
-;; mmc: what is this?
-   (define-xterm-command 'elinks
-    #:command  "rxvt -geometry 100x60 -sb +ls"           ; -tn xterm
+  ;; mmc: what is this?
+  (define-xterm-command 'elinks
+    #:command  "rxvt -geometry 100x60 -sb +ls" ; -tn xterm
     ;;  "/usr/X11R6/bin/xterm +wf +sb -sl 500 -j -ls +dc -u8"
     #:program (concat links-program " -no-connect www.wsws.org/mobile"))
 
@@ -475,7 +474,7 @@ Every one is run only on the first matching window!")
 
 
 
-;; Use alist ... or better, a file?
+  ;; Use alist ... or better, a file?
   (define-links-command 'google "en" "https://www.google.com/")
 
   (define-links-command 'wikinews "en" "http://en.wikinews.org/wiki/Main_Page")
@@ -488,7 +487,7 @@ Every one is run only on the first matching window!")
   (define-links-command 'wikipedia "en" "http://www.wikipedia.org")
   (define-links-command 'lwn "en" "http://lwn.net/Archives/")
 
-  ;(define-links-command 'chl "en" "http://www.chl.it")
+                                        ;(define-links-command 'chl "en" "http://www.chl.it")
 
 
 
@@ -540,23 +539,24 @@ Every one is run only on the first matching window!")
                   ;;(interactive "nNumber: ")
                   )
 
-(define-command 'urxvt
+  (define-command 'urxvt
+    ;;"Start a new WIDE xterm."
+    (lambda ()
+      (my-xterm
+       #:command "urxvt -fn \"xft:Bitstream Vera Sans Mono:pixelsize=20\""
+       ;;(interactive "nNumber: ")
+       )))
+
+  (define (su-to host)
+    ;; (wid-assign-wid-to-window "S")
+    (my-xterm #:user "root" #:hostname host))
+
+  (define-command 'su-to su-to
                   ;;"Start a new WIDE xterm."
-  (lambda ()
-    (my-xterm
-     #:command "urxvt -fn \"xft:Bitstream Vera Sans Mono:pixelsize=20\""
-     ;;(interactive "nNumber: ")
-     )))
-
-(define (su-to host)
-  ;; (wid-assign-wid-to-window "S")
-  (my-xterm #:user "root" #:hostname host))
-
-(define-command 'su-to su-to
-                ;;"Start a new WIDE xterm."
-                #:spec '(list (prompt-for-host))
-                ;;(interactive "nNumber: ")
-                ))
+                  #:spec '(list (prompt-for-host))
+                  ;;(interactive "nNumber: ")
+                  )
+  )
 
 
 ;; Customize:
