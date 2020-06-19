@@ -419,6 +419,7 @@ Every one is run only on the first matching window!")
   (define (links language url
                  #!key
                  (size #f)
+                 (options "")
                  ; (command links-xterm)
                  #!rest rest)
     "open an xterm/elinks ready for LANGUAGE, at URL"
@@ -427,21 +428,9 @@ Every one is run only on the first matching window!")
            #:program (concat
                       (format #f "%s" links-program);-base-session=1  -no-connect
                       (if url
-                          (format #f " '%s'" url)
+                          (format #f "%s '%s'" options url)
                         ""))
            #:font (language->font language #:size size)
-           rest))
-
-
-;; mmc: this is only for test!
-  (define (elinks language url #!rest rest)
-    "open an xterm/elinks ready for LANGUAGE, at URL, a new session !!"
-    (apply my-xterm
-           #:command  "rxvt -geometry 100x60 -sb +ls"           ; -tn xterm
-           ;; [03 nov 05] mmc: what was it?
-           ;; #:command "/usr/X11R6/bin/xterm +wf +sb -sl 500 -j -ls +dc -u8"
-           #:program (format #f "%s -no-connect '%s'" links-program url) ;-base-session=1  -no-connect
-           #:font (language->font language)
            rest))
 
 (define-command 'elinks-maybe-selection
@@ -471,7 +460,9 @@ Every one is run only on the first matching window!")
             (progn
               (setq selection (string-replace " " "+" selection))
               ;; string-replace regexp template string
-              (elinks #f (concat "http://www.google.com/search?q=" selection)))
+              (links #f (concat "http://www.google.com/search?q=" selection)
+                      (options "-no-connect")
+                      ))
           (links #f #f))))))
 
 
