@@ -137,10 +137,10 @@
                                         ;(setq host-for-new-window #f)
     ;; do we have to run [rs]sh ?
     (if hostname
-	(DB "%s vs. %s (%s), title %s.\n" hostname (localhost) program title))
+        (DB "%s vs. %s (%s), title %s.\n" hostname (localhost) program title))
     (if (and hostname (not (string= hostname (localhost))))
         (progn
-	  (DB "%s vs. %s.\n" hostname (localhost))
+          (DB "%s vs. %s.\n" hostname (localhost))
           (setq program (concat (or login (host->rsh-program hostname))
                                 " "
                                 (if user (concat "-l" user " ") "")
@@ -152,7 +152,7 @@
 
       ;; local !!
       (when (and user (not (string= user (user-login-name))))
-	(DB "%s vs. %s.\n" user (user-login-name))
+        (DB "%s vs. %s.\n" user (user-login-name))
         (setq program (concat "su - " user " " program))
         (unless title
             (setq title program))
@@ -183,21 +183,21 @@
          (window-put w 'user user)))
 
       (if (boundp 'get-priority)
-	  (let ((our-priority (get-priority 0 0)) ;require !!!
-		(nice 0))
-	    (if (and priority
-		     (> priority our-priority))
-		(setq nice (- priority our-priority)))
+          (let ((our-priority (get-priority 0 0)) ;require !!!
+                (nice 0))
+            (if (and priority
+                     (> priority our-priority))
+                (setq nice (- priority our-priority)))
 
 
-	    ;;(message-format "system: %s\n" command-line)
-	    (system-bg (concat (if (zerop nice)
-				   ""
-				 (concat "nice -n " (number->string nice) " "))
-			       command-line)))
-	;;
-	(system-bg command-line)
-	))) ; I renice SF to -10, so this
+            ;;(message-format "system: %s\n" command-line)
+            (system-bg (concat (if (zerop nice)
+                                   ""
+                                 (concat "nice -n " (number->string nice) " "))
+                               command-line)))
+        ;;
+        (system-bg command-line)
+        ))) ; I renice SF to -10, so this
 
 
 ;;;
