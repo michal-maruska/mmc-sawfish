@@ -416,18 +416,20 @@ Every one is run only on the first matching window!")
     #:program links-program)
 
 ;;; Links
-  (define (links language url #!rest rest)
+  (define (links language url
+                 #!key
+                 (size #f)
+                 ; (command links-xterm)
+                 #!rest rest)
     "open an xterm/elinks ready for LANGUAGE, at URL"
     (apply my-xterm
-           ;; [03 nov 05]   i'm changing the xterm!
-           #:command  links-xterm
-           ;;"rxvt -geometry 100x60 +ls" ;; no scrollbar needed!          ; -tn xterm
+           #:command "rxvt -geometry 100x60 +ls" ;; no scrollbar needed!          ; -tn xterm
            #:program (concat
                       (format #f "%s" links-program);-base-session=1  -no-connect
                       (if url
                           (format #f " '%s'" url)
                         ""))
-           #:font (language->font language)
+           #:font (language->font language #:size size)
            rest))
 
 
