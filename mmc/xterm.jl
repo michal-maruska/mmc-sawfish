@@ -92,12 +92,6 @@
     )
 
 
-(defcustom links-xterm "rxvt -geometry 100x60 +ls"
-  "xterm which runs the elinks inside. (invoked by appending -e elinks...)"
-  :group (xterm)
-  :type string                          ;command
-  )
-
 ;; (setq my-xterm-command  "xterm +wf +sb -sl 500 -j -ls -tm 'rprnt ^-'")  "xterm  +sb -sl 500 -j -ls -bg black -fg white ")
 ;;  (setq my-xterm-command "xterm +sb -sl 500 -j -ls  +dc -wc -u8 +vb")
 
@@ -420,7 +414,6 @@ Every one is run only on the first matching window!")
                  #!key
                  (size #f)
                  (options "")
-                 ; (command links-xterm)
                  #!rest rest)
     "open an xterm/elinks ready for LANGUAGE, at URL"
     (apply my-xterm
