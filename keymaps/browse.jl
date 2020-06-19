@@ -22,6 +22,8 @@
 
   "u" 'elinks-url
   "h-u" 'elinks-url
+  "h-U" 'elinks-small-url
+  "U" 'elinks-small-url
 
 
   "g" 'google
