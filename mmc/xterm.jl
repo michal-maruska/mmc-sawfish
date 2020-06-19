@@ -74,19 +74,23 @@
 
 ;; this clashes w/ ...
 ;; nice
-(defcustom my-xterm-command             ;"xterm +wf +sb -sl 500 -j -ls +dc -u8 +vb"
-  (concat "rxvt +sb -sl 500 -j -ls +vb "
-          (format #f  "-geometry %dx%d"
-		  ;; fixme: not dynamic:
-		  ;(inexact->exact (round (/ (screen-width) 18 1.4)))
+  (define (calculate-xterm-cmd)
+    (concat "rxvt +sb -sl 500 -j -ls +vb "
+            (format #f  "-geometry %dx%d"
+                    ;; fixme: not dynamic:
+                                        ;(inexact->exact (round (/ (screen-width) 18 1.4)))
 
-		  (inexact->exact (round (/ (car (head-dimensions 0)) 13)))
-                  (inexact->exact (round (/ (cdr (head-dimensions 0)) 23 1.5)))))
+                    (min 100 (inexact->exact (round (/ (car (head-dimensions 0)) 13 1.5))))
+                    (min 20 (inexact->exact (round (/ (cdr (head-dimensions 0)) 23 1.5)))))))
 
-  "the default command & args"
-  :group (xterm)
-  :type string                          ;command
-  )
+                                        ; (setq my-xterm-command (calculate-xterm-cmd))
+  (defcustom my-xterm-command           ;"xterm +wf +sb -sl 500 -j -ls +dc -u8 +vb"
+    (calculate-xterm-cmd)
+    "the default command & args"
+    :group (xterm)
+    :type string                        ;command
+    )
+
 
 (defcustom links-xterm "rxvt -geometry 100x60 +ls"
   "xterm which runs the elinks inside. (invoked by appending -e elinks...)"
