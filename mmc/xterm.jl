@@ -527,6 +527,13 @@ Every one is run only on the first matching window!")
     #:spec
     '(list (read-url)))
 
+  (define-command 'elinks-small-url
+    (lambda (url)
+      (links "en" url
+             #:size 'small))
+    #:spec
+    '(list (read-url)))
+
   (define-command 'srfi
     (lambda (number)
       (links "en" (format #f "http://srfi.schemers.org/srfi-%d/srfi-%d.html" number number)))
