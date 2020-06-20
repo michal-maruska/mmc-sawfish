@@ -1,3 +1,20 @@
+mmc-sawfish (1.6.7) release; urgency=medium
+
+  * spaces
+  * Commands for small elinks.
+  * space
+  * language->font extend the api to allow Size argument
+  * Always re-calculate the parameters for a new xterm -- in a function
+  * space
+  * new command: elinks-small-url
+  * Extend links to accept size
+  * Drop the elinks function/ command.
+  * clean up: drop links-xterm
+  * spaces
+  * Add more for browser (google unstable)
+
+ -- Michal Maruska <mmaruska@gmail.com>  Sat, 20 Jun 2020 15:43:51 +0200
+
 mmc-sawfish (1.6.6) release; urgency=medium
 
   * spaces
