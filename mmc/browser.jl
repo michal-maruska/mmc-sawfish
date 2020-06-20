@@ -29,20 +29,22 @@
     (let ((class  (window-class w)))
       (format 't "%s" class)
       (and (stringp class)
-           (or (string= class  "Mozilla")
-               (string= class  "MozillaFirebird-bin")
-               (string= class  "netscape")
-               (string= class  "Firefox-bin")
-               (string= class  "Firefox")
-               (string= class  "Iceweasel")
-
-               (string= (string-downcase class)  "google-chrome")
-               (string= (string-downcase class)  "google-chrome-beta")
-               (string= (string-downcase class)  "chromium-browser")
-               (string= (string-downcase class) "chromium")
-
-               (string= class  "Minefield")
-               (string= class  "Nightly")
+           (member (string-downcase class)
+                   '("Mozilla" "MozillaFirebird-bin"
+                     "netscape"
+                     "Iceweasel"
+                     "Firefox"
+                     "Firefox-bin"
+                     "google-chrome"
+                     "chromium"
+                     "chromium-browser"
+                     "google-chrome-unstable"
+                     "google-chrome-stable"
+                     "google-chrome-beta"
+                     "google-chrome"
+                     "Nightly"
+                     "Minefield"
+                     )
                ))))
 
   (define (git-browser-window? w)
