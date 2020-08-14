@@ -29,7 +29,7 @@
     (let ((class  (window-class w)))
       (format 't "%s" class)
       (and (stringp class)
-           (member (string-downcase class)
+           (member class
                    '("Mozilla" "MozillaFirebird-bin"
                      "netscape"
                      "Iceweasel"
