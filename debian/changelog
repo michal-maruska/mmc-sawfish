@@ -1,3 +1,9 @@
+mmc-sawfish (1.6.8) release; urgency=medium
+
+  * Don't downcase when searching for browser class
+
+ -- Michal Maruska <mmaruska@gmail.com>  Fri, 14 Aug 2020 18:23:13 +0200
+
 mmc-sawfish (1.6.7) release; urgency=medium
 
   * spaces
