@@ -479,7 +479,7 @@ Every one is run only on the first matching window!")
 
   (define-links-command 'wikinews "en" "http://en.wikinews.org/wiki/Main_Page")
   (define-links-command 'links-cz "cz" "http://www.linux.cz/index.old.html")
-  (define-links-command 'wsws "en" "http://www.wsws.org/mobile")
+  (define-links-command 'wsws "en" "http://www.wsws.org/") ;; mobile
 
   (define-links-command 'maruska "en" "http://maruska.dyndns.org")
   (define-links-command 'maruska2 "en" "http://maruska.gotdns.org")
