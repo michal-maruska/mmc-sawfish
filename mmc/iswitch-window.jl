@@ -534,7 +534,7 @@
                             ;; should be a common ...
                                         ; (setq wlist (iswitch-update-match (cons input constraints) init-wlist)))
                             ((equal key "M-e")
-                             (iswitch-add-condition! wlist '(class "Emacs")))
+                             (iswitch-add-condition! wlist '(class "Emacs" "Emacs-gtk")))
 
 
                             ((equal key "M-s")
