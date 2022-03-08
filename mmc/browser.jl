@@ -5,6 +5,7 @@
       mozilla-window?
       netscape-running?
       git-browser-window?
+      code-browser-window?
       )
 
     (open
@@ -51,6 +52,10 @@
     (let ((class  (window-class w)))
       (or (string= class  "P4v.bin")
           (string= class  "Gitk"))))
+
+  (define (code-browser-window? w)
+    (let ((class  (window-class w)))
+      (string= class  "jetbrains-idea-ce")))
 
 ;; to add the current one:
 ;;(window-class (get-window-by-name-re "Mozilla "))

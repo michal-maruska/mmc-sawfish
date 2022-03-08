@@ -609,6 +609,13 @@
                               `(predicate
                                 ,git-browser-window?)
                               ))
+
+                            ((equal key "M-i")
+                             (iswitch-add-condition!
+                              wlist
+                              `(predicate
+                                ,code-browser-window?)
+                              ))
                             ((equal key "C-v") ; limit to the current viewport
                              ;; fixme!
                              (iswitch-add-condition!
