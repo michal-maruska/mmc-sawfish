@@ -1,3 +1,11 @@
+mmc-sawfish (1.6.9) release; urgency=medium
+
+  * Give up on wsws/mobile
+  * iswitch: C-i for jetbrains-idea IDE
+  * iswitch: add another class for Emacs windows
+
+ -- Michal Maruska <mmaruska@gmail.com>  Tue, 08 Mar 2022 13:57:33 +0100
+
 mmc-sawfish (1.6.8) release; urgency=medium
 
   * Don't downcase when searching for browser class
