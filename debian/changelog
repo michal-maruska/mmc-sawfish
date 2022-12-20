@@ -1,3 +1,9 @@
+mmc-sawfish (1.6.10) release; urgency=medium
+
+  * debian: bump up compat to 11
+
+ -- Michal Maruska <mmaruska@gmail.com>  Tue, 20 Dec 2022 23:43:31 +0100
+
 mmc-sawfish (1.6.9) release; urgency=medium
 
   * Give up on wsws/mobile
