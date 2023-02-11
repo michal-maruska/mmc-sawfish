@@ -30,12 +30,12 @@
     (let ((class  (window-class w)))
       (format 't "%s" class)
       (and (stringp class)
-           (member class
-                   '("Mozilla" "MozillaFirebird-bin"
+           (member (string-downcase class)
+                   '("mozilla" "mozillafirebird-bin"
                      "netscape"
-                     "Iceweasel"
-                     "Firefox"
-                     "Firefox-bin"
+                     "iceweasel"
+                     "firefox"
+                     "firefox-bin"
                      "google-chrome"
                      "chromium"
                      "chromium-browser"
@@ -43,8 +43,8 @@
                      "google-chrome-stable"
                      "google-chrome-beta"
                      "google-chrome"
-                     "Nightly"
-                     "Minefield"
+                     "nightly"
+                     "minefield"
                      )
                ))))
 
