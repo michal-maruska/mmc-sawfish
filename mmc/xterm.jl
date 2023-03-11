@@ -74,8 +74,17 @@
 
   ;; this clashes w/ ...
   ;; nice
-  (define (calculate-xterm-cmd)
-    (concat "rxvt +sb -sl 500 -j -ls +vb "
+  (defcustom xterm-base-command
+    ;; default:
+    "rxvt" ;
+    :after-set (lambda (symbol value)
+                 (custom-set-variable 'my-xterm-command
+                             (calculate-xterm-cmd))
+                 )
+  )
+(define (calculate-xterm-cmd)
+    (concat xterm-base-command " "
+            ;;"rxvt +sb -sl 65535 -j -ls +vb "
             (format #f  "-geometry %dx%d"
                     ;; fixme: not dynamic:
                                         ;(inexact->exact (round (/ (screen-width) 18 1.4)))
