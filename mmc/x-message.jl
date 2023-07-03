@@ -340,7 +340,7 @@
 (define (x-message-hide mwindow)
   "destroy the X window associated w/ MWINDOW"
   (let ((message-window (window-of mwindow))
-	(message-gc (gc-of mwindow)))
+        (message-gc (gc-of mwindow)))
     (setq message-windows (delq mwindow message-windows)) ;or  message-window?
     (when message-window
       (x-destroy-window message-window)

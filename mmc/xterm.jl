@@ -82,18 +82,31 @@
                              (calculate-xterm-cmd))
                  )
   )
-(define (calculate-xterm-cmd)
-    (concat xterm-base-command " "
-            ;;"rxvt +sb -sl 65535 -j -ls +vb "
-            (format #f  "-geometry %dx%d"
-                    ;; fixme: not dynamic:
+
+  (define (cells-in-interval width cell-width percentage)
+    (inexact->exact (round (* (/ width cell-width) percentage))))
+
+  (define (calculate-xterm-cmd)
+    (let ((font-width 13)
+          (font-height 25)
+          )
+      ;; (setq my-xterm-command  "xterm +wf +sb -sl 500 -j -ls -tm 'rprnt ^-'")  "xterm  +sb -sl 500 -j -ls -bg black -fg white ")
+      ;; (setq my-xterm-command "xterm +sb -sl 500 -j -ls  +dc -wc -u8 +vb")
+      ;; "xterm +wf +sb -sl 500 -j -ls +dc -u8 +vb"
+
+      (concat xterm-base-command " "
+              (format #f  "-geometry %dx%d"
+                      ;; fixme: not dynamic:
                                         ;(inexact->exact (round (/ (screen-width) 18 1.4)))
+                      ;; the font-size  max 60% ?
+                      (min 100
+                           (cells-in-interval (car (head-dimensions 0)) font-width 0.6)
+                           )
+                      (min 40
+                           (cells-in-interval (cdr (head-dimensions 0)) font-height 0.6))))))
 
-                    (min 100 (inexact->exact (round (/ (car (head-dimensions 0)) 13 1.5))))
-                    (min 20 (inexact->exact (round (/ (cdr (head-dimensions 0)) 23 1.5)))))))
-
-                                        ; (setq my-xterm-command (calculate-xterm-cmd))
-  (defcustom my-xterm-command           ;"xterm +wf +sb -sl 500 -j -ls +dc -u8 +vb"
+  ;; (setq my-xterm-command (calculate-xterm-cmd))
+  (defcustom my-xterm-command
     (calculate-xterm-cmd)
     "the default command & args"
     :group (xterm)
@@ -101,15 +114,11 @@
     )
 
 
-  ;; (setq my-xterm-command  "xterm +wf +sb -sl 500 -j -ls -tm 'rprnt ^-'")  "xterm  +sb -sl 500 -j -ls -bg black -fg white ")
-  ;;  (setq my-xterm-command "xterm +sb -sl 500 -j -ls  +dc -wc -u8 +vb")
-  
   (define (host->rsh-program host)
     "different hosts accept different protocols"
     (declare (unused host))
     ;; i use ssh only, now. But unencrtypted might help, on lan.
     (if
-                                        ;nil
         (member host '())		;"linux9"
         "rsh"
       "ssh -X"))

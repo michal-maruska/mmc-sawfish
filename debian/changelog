@@ -1,3 +1,11 @@
+mmc-sawfish (1.6.11) release; urgency=medium
+
+  [ Michal Maruska ]
+  * detect web-browser by lowercased class
+  * bind xterm-base-command to my-xterm-command
+
+ --  <mmaruska@gmail.com>  Mon, 03 Jul 2023 12:29:21 +0200
+
 mmc-sawfish (1.6.10) release; urgency=medium
 
   * debian: bump up compat to 11
