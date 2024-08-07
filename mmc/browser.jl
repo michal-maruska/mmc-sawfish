@@ -55,7 +55,11 @@
 
   (define (code-browser-window? w)
     (let ((class  (window-class w)))
-      (string= class  "jetbrains-idea-ce")))
+      (or (string= class  "jetbrains-idea-ce")
+          (string= class  "jetbrains-studio")
+          (string= class  "jetbrains-pycharm-ce")
+          (string= class  "jetbrains-clion")
+          )))
 
 ;; to add the current one:
 ;;(window-class (get-window-by-name-re "Mozilla "))
