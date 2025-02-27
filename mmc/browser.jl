@@ -28,7 +28,7 @@
   ;; mozilla has changed the window class, in the past.
   (define (mozilla-window? w)
     (let ((class  (window-class w)))
-      (format 't "%s" class)
+      ;; (format 't "%s" class)
       (and (stringp class)
            (member (string-downcase class)
                    '("mozilla" "mozillafirebird-bin"
