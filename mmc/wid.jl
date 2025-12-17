@@ -228,7 +228,7 @@
                 (display-information
                  (format #f "%s"
                          (mapconcat window-name current-search "\n"))) ;windows
-                (DB "%s\n" windows)
+                (DB "wid: %s\n" windows)
                                         ; (windowp ))
                 (list window))
             (progn                      ;otherwise bug ?

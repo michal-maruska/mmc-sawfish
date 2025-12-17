@@ -726,6 +726,7 @@
 ;;; hi level
   (define (iswitch-window)
     "Pick a window by incremental search and select it." ;(interactive)
+    (DB "iswitch-window -- start\n")
     (display-window (iswitch-get-window)))
 
 
