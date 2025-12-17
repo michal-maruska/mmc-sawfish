@@ -559,7 +559,7 @@
 
 
                             ((equal key "M-t")
-                             (iswitch-add-condition! wlist '(class "XTerm")))
+                             (iswitch-add-condition! wlist '(class "XTerm" "Mate-terminal" "org.wezfurlong.wezterm")))
 
                             ;((equal key "M-g")
                             ; (setq wlist (iswitch-update-class wlist '("galeon_browser"))))
