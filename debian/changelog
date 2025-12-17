@@ -1,3 +1,13 @@
+mmc-sawfish (1.6.12) unstable; urgency=medium
+
+  * browser: clion .. maybe all jetbrains* ?
+  * suppress verbosity -- on class testing
+  * iswitch: support wezterm
+  * spaces
+  * logs
+
+ -- Michal Maruska <mmaruska@gmail.com>  Wed, 17 Dec 2025 11:39:28 +0100
+
 mmc-sawfish (1.6.11) release; urgency=medium
 
   [ Michal Maruska ]
