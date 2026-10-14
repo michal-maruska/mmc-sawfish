@@ -22,6 +22,7 @@
       my-xterm
       language->font                    ;  should take the size !!!
       define-xterm-command
+      calculate-xterm-cmd
       define-links-command
       links
                                         ;elinks-bookmarks
