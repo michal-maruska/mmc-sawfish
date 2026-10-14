@@ -76,12 +76,14 @@
   ;; nice
   (defcustom xterm-base-command
     ;; default:
-    "rxvt" ;
+    "wezterm"
+    "doc: command to invoke to get terminal"
+    :group xterm
+    :type string
     :after-set (lambda (symbol value)
                  (custom-set-variable 'my-xterm-command
-                             (calculate-xterm-cmd))
-                 )
-  )
+                                      (calculate-xterm-cmd)))
+    )
 
   (define (cells-in-interval width cell-width percentage)
     (inexact->exact (round (* (/ width cell-width) percentage))))
