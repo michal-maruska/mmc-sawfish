@@ -494,6 +494,7 @@
                (catch 'exit-iswitch
                  (call-for-next-key-events
                   (lambda ()
+                    (sync-server)
                     (if use-timer
                         (if display-timer
                             (set-timer display-timer)
@@ -699,7 +700,8 @@
                       (when (= 1 (length wlist))
                         (beep)
                                         ;(throw 'exit-iswitch wlist)
-                        (display-window (car wlist))))))))
+                        (display-window (car wlist)))
+                      (sync-server))))))
 
            ;; unwind-protect:
            (display-message nil)
