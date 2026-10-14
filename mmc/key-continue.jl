@@ -8,11 +8,11 @@
      rep
      rep.system
      rep.mmsystem
-     
+
      sawfish.wm.events
      )
 
-  
+
 ;; is this sufficient?
   (define (throw-event-to-our-tag)
     (throw 'our-tag

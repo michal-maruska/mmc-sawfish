@@ -257,8 +257,6 @@ Every one is run only on the first matching window!")
                                         ; #:title (concat "ssh " user "@" host)
                   ))))
 
-
-
 ;;; THE stock xterm  and other
   (define-command 'my-xterm
     (lambda ()
@@ -573,8 +571,7 @@ Every one is run only on the first matching window!")
                   ;;"Start a new WIDE xterm."
                   #:spec '(list (prompt-for-host))
                   ;;(interactive "nNumber: ")
-                  )
-  )
+                  ))
 
 
 ;; Customize:
